@@ -1,1 +1,1 @@
-# Next.js example
+# Next.js Example
