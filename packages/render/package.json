@@ -1,0 +1,22 @@
+{
+  "name": "@react-notion-render/render",
+  "version": "0.0.1",
+  "description": "React renderer for Notion,",
+  "author": "Xennis",
+  "license": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc --build"
+  },
+  "devDependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "dependencies": {
+    "@types/react": "^18.3.2"
+  }
+}
