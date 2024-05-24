@@ -1,7 +1,14 @@
 {
-  "name": "@react-notion-render/render",
-  "version": "0.0.1",
+  "name": "@xennis/react-notion-render",
+  "version": "0.0.1-alpha.1",
   "description": "React renderer for Notion,",
+  "repository": {
+    "url": "https://github.com/Xennis/react-notion-render",
+    "directory": "packages/render"
+  },
+  "publishConfig": {
+    "@xennis:registry": "https://npm.pkg.github.com"
+  },
   "author": "Xennis",
   "license": "",
   "main": "dist/index.js",
