@@ -10,7 +10,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc --build",
+    "build": "tsc --build && cp src/thirdparty/react-notion-x/styles.css dist/styles.css",
     "clean": "tcs --clean"
   },
   "dependencies": {
