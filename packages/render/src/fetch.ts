@@ -10,6 +10,7 @@ export const fetchBlocksChildren = async (client: Client, blockId: string) => {
         if (isFullBlock(block)) {
             if (!block.has_children) {
                 result.push(block)
+                continue
             }
             const childId =
                 block.type === "synced_block" && block.synced_block.synced_from !== null

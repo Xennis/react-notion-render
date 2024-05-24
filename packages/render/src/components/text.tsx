@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react"
 import type { RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints"
 
-import { notionColor } from "./util"
+import { notionColor } from "../util"
 
 export const RichTexts = ({
   value,
