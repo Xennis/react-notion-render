@@ -1,31 +1,31 @@
-import {
-  type Heading1BlockObjectResponse,
-  type RichTextItemResponse
-} from "@notionhq/client/build/src/api-endpoints"
+import { type Heading1BlockObjectResponse, type RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints"
 import { LinkIcon } from "../thirdparty/heroicons/link-icon"
 import { Fragment, type ReactNode } from "react"
 
-import { notionColor } from "../util"
+import { classNames, notionColor } from "../util"
 import { RichTexts } from "./text"
+import { RichTextOptions } from "../types"
 
 export const Heading = ({
   as,
   rich_text,
   color,
   is_toggleable,
+  options,
   children,
 }: {
   as: "h1" | "h2" | "h3"
   rich_text: Array<RichTextItemResponse>
   color: Heading1BlockObjectResponse["heading_1"]["color"]
   is_toggleable: boolean
+  options: RichTextOptions
   children: ReactNode
 }) => {
   const id = idFromRichTexts(rich_text)
   const props = {
     id: id,
     style: { display: is_toggleable ? "inline" : "block" },
-    className: `notion-h notion-${as} ${notionColor(color)})`,
+    className: classNames("notion-h", `notion-${as}`, notionColor(color)),
   }
 
   const innerElement = (
@@ -36,7 +36,7 @@ export const Heading = ({
         </a>
       )}
       <span className="notion-h-title">
-        <RichTexts value={rich_text} />
+        <RichTexts value={rich_text} options={options} />
       </span>
     </Fragment>
   )

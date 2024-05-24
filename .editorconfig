@@ -1,0 +1,16 @@
+root = true
+
+[*]
+insert_final_newline = true
+
+[*.{js,jsx,ts,tsx}]
+# https://prettier.io/docs/en/options.
+indent_size = 2
+indent_style = space
+trim_trailing_whitespace = true
+max_line_length = 120
+
+#[*.{css,json,prisma}]
+#indent_size = 2
+#indent_style = space
+#trim_trailing_whitespace = true

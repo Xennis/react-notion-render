@@ -6,9 +6,6 @@
     "url": "https://github.com/Xennis/react-notion-render",
     "directory": "packages/render"
   },
-  "publishConfig": {
-    "@xennis:registry": "https://npm.pkg.github.com"
-  },
   "author": "Xennis",
   "license": "",
   "main": "dist/index.js",

@@ -1,4 +1,8 @@
 dist/
 node_modules/
 
+# pnpm
 pnpm-publish-summary.json
+
+# Next.js
+.next/
