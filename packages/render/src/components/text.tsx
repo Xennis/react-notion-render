@@ -96,11 +96,7 @@ const RichText = ({ value, options }: { value: RichTextItemResponse; options: Ri
           textUrl = options.resolveLinkFn(textUrl.substring(1)) // remove the leading slash
         }
         text = (
-          <a
-            className="notion-link"
-            href={textUrl !== null ? textUrl : "#"}
-            target={isRelative ? undefined : "_blank"}
-          >
+          <a className="notion-link" href={textUrl !== null ? textUrl : "#"} target={isRelative ? undefined : "_blank"}>
             {text}
           </a>
         )

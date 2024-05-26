@@ -1,10 +1,10 @@
 {
-  "name": "@react-notion-cms/render",
+  "name": "@react-notion-cms/fetch",
   "version": "0.0.1-alpha.1",
-  "description": "React renderer for Notion",
+  "description": "Fetch data from Notion",
   "repository": {
     "url": "https://github.com/Xennis/react-notion-render",
-    "directory": "packages/render"
+    "directory": "packages/fetch"
   },
   "author": "Xennis",
   "license": "",
@@ -14,13 +14,10 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc --build && cp src/thirdparty/react-notion-x/styles.css dist/styles.css",
+    "build": "tsc --build",
     "clean": "tcs --clean"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.15"
-  },
-  "devDependencies": {
-    "@types/react": "^18.3.2"
   }
 }

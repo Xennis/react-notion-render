@@ -17,11 +17,18 @@ importers:
         specifier: ^5
         version: 5.4.5
 
+  packages/fetch:
+    dependencies:
+      "@notionhq/client":
+        specifier: ^2.2.15
+        version: 2.2.15
+
   packages/render:
     dependencies:
       "@notionhq/client":
         specifier: ^2.2.15
         version: 2.2.15
+    devDependencies:
       "@types/react":
         specifier: ^18.3.2
         version: 18.3.3

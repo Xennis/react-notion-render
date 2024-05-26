@@ -1,7 +1,7 @@
-import { fetchBlocksChildren, Render } from "@react-notion-render/render"
+import { fetchBlocksChildren, Render } from "@react-notion-cms/render"
 import { Client } from "@notionhq/client"
 
-import "@react-notion-render/render/styles.css"
+import "@react-notion-cms/render/styles.css"
 
 const notionClient = new Client({
   auth: process.env.NOTION_ACCESS_TOKEN,
