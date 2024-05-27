@@ -6,6 +6,7 @@ import type { BlockObjectResponseWithChildren, RichTextOptions } from "./types"
 import { Heading } from "./components/heading"
 import { Icon } from "./components/icon"
 import { Checkbox } from "./components/checkbox"
+import { Link } from "./components/link"
 
 export const Render = ({
   blocks,
@@ -120,7 +121,11 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
     case "child_database":
       break
     case "child_page":
-      break
+      const childPageResolved = options.resolveLinkFn(block.id)
+      if (!childPageResolved) {
+        return <></>
+      }
+      return <Link {...childPageResolved}>{block.child_page.title}</Link>
     case "code":
       // TODO: <Code {...block.code} />
       break

@@ -3,6 +3,7 @@ import type { MentionRichTextItemResponse, RichTextItemResponse } from "@notionh
 
 import { notionColor, relativeNotionUrl } from "../util"
 import { RichTextOptions } from "../types"
+import { Link } from "./link"
 
 export const RichTexts = ({ value, options }: { value: Array<RichTextItemResponse>; options: RichTextOptions }) => {
   return (
@@ -49,18 +50,10 @@ const RichText = ({ value, options }: { value: RichTextItemResponse; options: Ri
       // Normal links are relative, e.g. /<uuid>, but mentions are absolute, e.g. https://www.notion.so/<uuid>
       let mentionUrl = value.href !== null ? relativeNotionUrl(value.href) : null
       if (mentionUrl) {
-        const isRelative = mentionUrl.startsWith("/")
-        if (isRelative) {
-          mentionUrl = options.resolveLinkFn(mentionUrl.substring(1)) // remove the leading slash
-        }
         result = (
-          <a
-            className="notion-link"
-            href={mentionUrl !== null ? mentionUrl : "#"}
-            target={isRelative ? undefined : "_blank"}
-          >
+          <ResolvedLink url={mentionUrl} options={options}>
             {result}
-          </a>
+          </ResolvedLink>
         )
       }
       return result
@@ -89,20 +82,41 @@ const RichText = ({ value, options }: { value: RichTextItemResponse; options: Ri
         text = <code className="notion-inline-code">{text}</code>
       }
 
-      let textUrl = value.text.link?.url ?? null
+      const textUrl = value.text.link?.url ?? null
       if (textUrl) {
-        const isRelative = textUrl.startsWith("/")
-        if (isRelative) {
-          textUrl = options.resolveLinkFn(textUrl.substring(1)) // remove the leading slash
-        }
         text = (
-          <a className="notion-link" href={textUrl !== null ? textUrl : "#"} target={isRelative ? undefined : "_blank"}>
+          <ResolvedLink url={textUrl} options={options}>
             {text}
-          </a>
+          </ResolvedLink>
         )
       }
       return text
   }
+}
+
+const ResolvedLink = ({
+  url,
+  options,
+  children,
+}: {
+  url: string
+  options: RichTextOptions
+  children: React.ReactNode
+}) => {
+  const isRelative = url.startsWith("/")
+  if (!isRelative) {
+    return (
+      <Link href={url} target="_blank">
+        {children}
+      </Link>
+    )
+  }
+  const resolvedLink = options.resolveLinkFn(url.substring(1)) // remove the leading
+  return (
+    <Link href={resolvedLink?.href ?? null} icon={resolvedLink?.icon}>
+      {children}
+    </Link>
+  )
 }
 
 const mentionText = (value: MentionRichTextItemResponse, formatDateFn: (date: Date) => string) => {
@@ -115,8 +129,7 @@ const mentionText = (value: MentionRichTextItemResponse, formatDateFn: (date: Da
         if (value.mention.date.end) {
           dateText += ` → ${formatDateFn(new Date(value.mention.date.end))}`
         }
-        // Ignored
-        // value.mention.date.time_zone
+        // Ignored: value.mention.date.time_zone
         return dateText
       } catch (e) {
         console.warn(`Failed to parse date '${value.mention.date}': ${e}`)

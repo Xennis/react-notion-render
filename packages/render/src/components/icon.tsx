@@ -1,12 +1,6 @@
-import { type PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
+import { IconResponse } from "../types"
 
-import { classNames } from "../util"
-
-// Just a helper type because it's not directly exposed.
-// Technically it's a page property but all icons (e.g. in databases too) have internally the same type.
-type Icon = PageObjectResponse["icon"]
-
-export const Icon = ({ icon, width }: { icon: Icon; width: number }) => {
+export const Icon = ({ icon, width }: { icon: IconResponse; width: number }) => {
   switch (icon?.type) {
     case "emoji":
       return (

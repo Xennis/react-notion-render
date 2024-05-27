@@ -20,7 +20,10 @@ export default async function Home() {
   const blocks = await fetchBlocksChildren(notionClient, process.env.NOTION_BLOCK_ID!)
   return (
     <main className="mx-auto max-w-screen-lg">
-      <Render blocks={blocks} options={{ formatDateFn: formatDateFn, resolveLinkFn: (nId) => nId }} />
+      <Render
+        blocks={blocks}
+        options={{ formatDateFn: formatDateFn, resolveLinkFn: (nId) => ({ href: nId, icon: null }) }}
+      />
     </main>
   )
 }
