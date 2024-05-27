@@ -381,20 +381,9 @@ svg.notion-page-icon {
 .notion-column {
   display: flex;
   flex-direction: column;
+  flex: 1 1 0%;
   padding-top: 12px;
   padding-bottom: 12px;
-}
-
-.notion-column > *:first-child {
-  margin-top: 0;
-  margin-left: 0;
-  margin-right: 0;
-}
-
-.notion-column > *:last-child {
-  margin-left: 0;
-  margin-right: 0;
-  margin-bottom: 0;
 }
 
 .notion-row {
@@ -402,6 +391,11 @@ svg.notion-page-icon {
   overflow: hidden;
   width: 100%;
   max-width: 100%;
+}
+
+/* Added: space-x-[value] from tw */
+.notion-row > :not([hidden]) ~ :not([hidden]) {
+  margin-left: 1rem;
 }
 
 @media (max-width: 640px) {
@@ -413,8 +407,9 @@ svg.notion-page-icon {
     width: 100% !important;
   }
 
-  .notion-row .notion-spacer {
-    display: none;
+  /* Added: space-x-[value] from tw */
+  .notion-row > :not([hidden]) ~ :not([hidden]) {
+    margin-left: 0;
   }
 }
 
@@ -464,14 +459,6 @@ svg.notion-page-icon {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.notion-spacer {
-  width: calc(min(32px, 4vw));
-}
-
-.notion-spacer:last-child {
-  display: none;
 }
 
 .notion-image {

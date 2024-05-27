@@ -143,22 +143,13 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       if (!columnListChildren) {
         return <></>
       }
-
-      const spacerWidth = `min(32px, 4vw)`
-      const ratio = 0.5
-      const columns = columnListChildren.length
-      const width = `calc((100% - (${columns - 1} * ${spacerWidth})) * ${ratio})`
       return (
         <div className="notion-row">
           {columnListChildren.map((column, index) => {
-            // The Fragment is only used to not destory the CSS.
             return (
-              <Fragment key={index}>
-                <div className="notion-column" style={{ width }}>
-                  <RenderBlocks blocks={column._children ?? []} options={options} />
-                </div>
-                <div className="notion-spacer" />
-              </Fragment>
+              <div className="notion-column">
+                <RenderBlocks blocks={column._children ?? []} options={options} />
+              </div>
             )
           })}
         </div>
