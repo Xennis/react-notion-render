@@ -147,7 +147,7 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
         <div className="notion-row">
           {columnListChildren.map((column, index) => {
             return (
-              <div className="notion-column">
+              <div key={index} className="notion-column">
                 <RenderBlocks blocks={column._children ?? []} options={options} />
               </div>
             )
