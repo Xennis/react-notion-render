@@ -1,6 +1,8 @@
 import { HTMLAttributeAnchorTarget } from "react"
 import { IconResponse } from "../types"
+import { Icon } from "./icon"
 
+// TODO: Split into Link and PageLink?
 export const Link = ({
   href,
   icon,
@@ -14,6 +16,7 @@ export const Link = ({
 }) => {
   return (
     <a className="notion-link" href={href !== null ? href : "#"} target={target}>
+      {icon !== undefined && icon !== null && <Icon icon={icon} width={20} />}
       {children}
     </a>
   )
