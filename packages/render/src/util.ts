@@ -4,7 +4,7 @@ import { type ParagraphBlockObjectResponse } from "@notionhq/client/build/src/ap
 type Color = ParagraphBlockObjectResponse["paragraph"]["color"]
 
 export const notionColor = (color: Color) => {
-  return `notion-${color.replace("green", "teal")}`
+  return `notion-${color}`
 }
 
 export const relativeNotionUrl = (url: string) => {

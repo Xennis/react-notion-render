@@ -18,13 +18,12 @@
 
   --select-color-0: rgb(46, 170, 220);
   --select-color-1: rgba(45, 170, 219, 0.3);
-  --select-color-2: #d9eff8;
 
   --notion-red: rgb(224, 62, 62);
   --notion-pink: rgb(173, 26, 114);
   --notion-blue: rgb(11, 110, 153);
   --notion-purple: rgb(105, 64, 165);
-  --notion-teal: rgb(77, 100, 97);
+  --notion-green: rgb(77, 100, 97);
   --notion-yellow: rgb(223, 171, 1);
   --notion-orange: rgb(217, 115, 13);
   --notion-brown: rgb(100, 71, 58);
@@ -34,7 +33,7 @@
   --notion-pink_background: rgb(244, 223, 235);
   --notion-blue_background: rgb(221, 235, 241);
   --notion-purple_background: rgb(234, 228, 242);
-  --notion-teal_background: rgb(221, 237, 234);
+  --notion-green_background: rgb(221, 237, 234);
   --notion-yellow_background: rgb(251, 243, 219);
   --notion-orange_background: rgb(250, 235, 221);
   --notion-brown_background: rgb(233, 229, 227);
@@ -44,25 +43,11 @@
   --notion-pink_background_co: rgba(244, 223, 235, 0.3);
   --notion-blue_background_co: rgba(221, 235, 241, 0.3);
   --notion-purple_background_co: rgba(234, 228, 242, 0.3);
-  --notion-teal_background_co: rgba(221, 237, 234, 0.3);
+  --notion-green_background_co: rgba(221, 237, 234, 0.3);
   --notion-yellow_background_co: rgba(251, 243, 219, 0.3);
   --notion-orange_background_co: rgba(250, 235, 221, 0.3);
   --notion-brown_background_co: rgba(233, 229, 227, 0.3);
   --notion-gray_background_co: rgba(235, 236, 237, 0.3);
-
-  --notion-item-blue: rgba(0, 120, 223, 0.2);
-  --notion-item-orange: rgba(245, 93, 0, 0.2);
-  --notion-item-green: rgba(0, 135, 107, 0.2);
-  --notion-item-pink: rgba(221, 0, 129, 0.2);
-  --notion-item-brown: rgba(140, 46, 0, 0.2);
-  --notion-item-red: rgba(255, 0, 26, 0.2);
-  --notion-item-yellow: rgba(233, 168, 0, 0.2);
-  --notion-item-default: rgba(206, 205, 202, 0.5);
-  --notion-item-purple: rgba(103, 36, 222, 0.2);
-  --notion-item-gray: rgba(155, 154, 151, 0.4);
-
-  --notion-max-width: 720px;
-  --notion-header-height: 45px;
 }
 
 .dark-mode {
@@ -85,7 +70,7 @@
   --notion-pink: rgb(226, 85, 161);
   --notion-blue: rgb(82, 156, 202);
   --notion-purple: rgb(154, 109, 215);
-  --notion-teal: rgb(77, 171, 154);
+  --notion-green: rgb(77, 171, 154);
   --notion-yellow: rgb(255, 220, 73);
   --notion-orange: rgb(255, 163, 68);
   --notion-brown: rgb(147, 114, 100);
@@ -94,7 +79,7 @@
   --notion-pink_background: rgb(83, 59, 76);
   --notion-blue_background: rgb(54, 73, 84);
   --notion-purple_background: rgb(68, 63, 87);
-  --notion-teal_background: rgb(53, 76, 75);
+  --notion-green_background: rgb(53, 76, 75);
   --notion-yellow_background: rgb(89, 86, 59);
   --notion-orange_background: rgb(89, 74, 58);
   --notion-brown_background: rgb(67, 64, 64);
@@ -103,7 +88,7 @@
   --notion-pink_background_co: rgba(83, 59, 76, 0.3);
   --notion-blue_background_co: rgba(120, 162, 187, 0.3);
   --notion-purple_background_co: rgba(68, 63, 87, 0.3);
-  --notion-teal_background_co: rgba(53, 76, 75, 0.3);
+  --notion-green_background_co: rgba(53, 76, 75, 0.3);
   --notion-yellow_background_co: rgba(89, 86, 59, 0.3);
   --notion-orange_background_co: rgba(89, 74, 58, 0.3);
   --notion-brown_background_co: rgba(67, 64, 64, 0.3);
@@ -155,9 +140,9 @@
 .notion-purple_co {
   color: var(--notion-purple);
 }
-.notion-teal,
-.notion-teal_co {
-  color: var(--notion-teal);
+.notion-green,
+.notion-green_co {
+  color: var(--notion-green);
 }
 .notion-yellow,
 .notion-yellow_co {
@@ -187,8 +172,8 @@
 .notion-purple_background {
   background-color: var(--notion-purple_background);
 }
-.notion-teal_background {
-  background-color: var(--notion-teal_background);
+.notion-green_background {
+  background-color: var(--notion-green_background);
 }
 .notion-yellow_background {
   background-color: var(--notion-yellow_background);
@@ -214,8 +199,8 @@
 .notion-purple_background_co {
   background-color: var(--notion-purple_background_co);
 }
-.notion-teal_background_co {
-  background-color: var(--notion-teal_background_co);
+.notion-green_background_co {
+  background-color: var(--notion-green_background_co);
 }
 .notion-yellow_background_co {
   background-color: var(--notion-yellow_background_co);
@@ -228,37 +213,6 @@
 }
 .notion-gray_background_co {
   background-color: var(--notion-gray_background_co);
-}
-
-.notion-item-blue {
-  background-color: var(--notion-item-blue);
-}
-.notion-item-orange {
-  background-color: var(--notion-item-orange);
-}
-.notion-item-green {
-  background-color: var(--notion-item-green);
-}
-.notion-item-pink {
-  background-color: var(--notion-item-pink);
-}
-.notion-item-brown {
-  background-color: var(--notion-item-brown);
-}
-.notion-item-red {
-  background-color: var(--notion-item-red);
-}
-.notion-item-yellow {
-  background-color: var(--notion-item-yellow);
-}
-.notion-item-default {
-  background-color: var(--notion-item-default);
-}
-.notion-item-purple {
-  background-color: var(--notion-item-purple);
-}
-.notion-item-gray {
-  background-color: var(--notion-item-gray);
 }
 
 .notion b {
