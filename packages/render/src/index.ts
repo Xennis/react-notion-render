@@ -1,3 +1,3 @@
 export { Render } from "./block"
 export { fetchBlocksChildren } from "./fetch"
-export { BlockObjectResponseWithChildren } from "./types"
+export { BlockObjectResponseWithChildren, IconResponse } from "./types"
