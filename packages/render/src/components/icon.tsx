@@ -1,6 +1,7 @@
 import { IconResponse } from "../types"
+import { classNames } from "../util"
 
-export const Icon = ({ icon, width }: { icon: IconResponse; width: number }) => {
+export const Icon = ({ icon, width, className }: { icon: IconResponse; width: number; className?: string }) => {
   switch (icon?.type) {
     case "emoji":
       return (
@@ -9,7 +10,15 @@ export const Icon = ({ icon, width }: { icon: IconResponse; width: number }) => 
         </span>
       )
     case "external":
-      return <img src={icon.external.url} width={width} height={width} alt="Icon" className="notion-page-icon" />
+      return (
+        <img
+          src={icon.external.url}
+          width={width}
+          height={width}
+          alt="Icon"
+          className={classNames("notion-page-icon", className ?? "")}
+        />
+      )
     case "file":
     default:
       return <></>

@@ -3,7 +3,7 @@ import type { MentionRichTextItemResponse, RichTextItemResponse } from "@notionh
 
 import { notionColor, relativeNotionUrl } from "../util"
 import { RichTextOptions } from "../types"
-import { Link } from "./link"
+import { Link, PageTitle } from "./link"
 
 export const RichTexts = ({ value, options }: { value: Array<RichTextItemResponse>; options: RichTextOptions }) => {
   return (
@@ -113,8 +113,8 @@ const ResolvedLink = ({
   }
   const resolvedLink = options.resolveLinkFn(url.substring(1)) // remove the leading
   return (
-    <Link href={resolvedLink?.href ?? null} icon={resolvedLink?.icon}>
-      {children}
+    <Link href={resolvedLink?.href ?? null}>
+      <PageTitle icon={resolvedLink?.icon ?? null}>{children}</PageTitle>
     </Link>
   )
 }
