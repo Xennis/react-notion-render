@@ -23,10 +23,18 @@ export const Heading = ({
   children: ReactNode
 }) => {
   const id = idFromRichTexts(rich_text)
+  // ref: .notion-h .notion-h1, .notion-h2, .notion-h3
   const props = {
     id: id,
-    style: { display: is_toggleable ? "inline" : "block", ...notionColor(color) },
-    className: classNames("notion-h group", `notion-${as}`),
+    style: {
+      display: is_toggleable ? "inline" : "block",
+      marginTop: as === "h1" ? "1.08em" : as === "h2" ? "1.1em" : "1em",
+      ...notionColor(color),
+    },
+    className: classNames(
+      "relative inline-block font-semibold leading-[1.3] max-w-full whitespace-pre-wrap mb-px px-0.5 py-[3px] break-words group",
+      as === "h1" ? "text-[1.875em]" : as === "h2" ? "text-[1.5em]" : "text-[1.25em]",
+    ),
   }
 
   const innerElement = (
