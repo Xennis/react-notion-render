@@ -12,7 +12,13 @@ export const Link = ({
   children: React.ReactNode
 }) => {
   return (
-    <a className="notion-link" href={href !== null ? href : "#"} target={target}>
+    // ref: .notion-link
+    <a
+      style={{ transition: "border-color 100ms ease-in,opacity 100ms ease-in" }}
+      className="break-words border-b-[0.05em] border-solid border-[--fg-color-2] text-inherit decoration-inherit opacity-70 hover:border-[--fg-color-6] hover:opacity-100"
+      href={href !== null ? href : "#"}
+      target={target}
+    >
       {children}
     </a>
   )

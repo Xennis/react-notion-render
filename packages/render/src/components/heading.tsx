@@ -5,6 +5,7 @@ import { Fragment, type ReactNode } from "react"
 import { classNames, notionColor } from "../util"
 import { RichTexts } from "./text"
 import { RichTextOptions } from "../types"
+import { Toggle } from "./toggle"
 
 export const Heading = ({
   as,
@@ -25,13 +26,18 @@ export const Heading = ({
   const props = {
     id: id,
     style: { display: is_toggleable ? "inline" : "block" },
-    className: classNames("notion-h", `notion-${as}`, notionColor(color)),
+    className: classNames("notion-h group", `notion-${as}`, notionColor(color)),
   }
 
   const innerElement = (
     <Fragment>
       {!is_toggleable && (
-        <a className="notion-hash-link" href={`#${id}`}>
+        // ref: .notion-hash-link
+        // note(adjusted): original `margin-left: -20px; padding-right: 4px;`
+        <a
+          className="float-start ms-[-25px] fill-[var(--fg-color-icon)] pe-0 no-underline opacity-0 group-hover:opacity-100"
+          href={`#${id}`}
+        >
           <LinkIcon width={20} height={20} />
         </a>
       )}
@@ -63,10 +69,9 @@ export const Heading = ({
   }
 
   return (
-    <details className="notion-toggle">
-      <summary style={summaryStyle}>{headingElement}</summary>
+    <Toggle summary={headingElement} summaryStyle={summaryStyle}>
       {children}
-    </details>
+    </Toggle>
   )
 }
 
