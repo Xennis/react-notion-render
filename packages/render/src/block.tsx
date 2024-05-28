@@ -1,4 +1,4 @@
-import { Fragment, type JSX } from "react"
+import { type JSX } from "react"
 
 import { RichTexts } from "./components/text"
 import { classNames, notionColor } from "./util"
@@ -7,6 +7,7 @@ import { Heading } from "./components/heading"
 import { Icon } from "./components/icon"
 import { Checkbox } from "./components/checkbox"
 import { Link, PageTitle } from "./components/link"
+import { Toggle } from "./components/toggle"
 
 export const Render = ({
   blocks,
@@ -50,7 +51,12 @@ const RenderBlocks = ({
         const bulletedListItems = [block, ...nextBlocksOfSameType(i + 1, block.type)]
         i = i + bulletedListItems.length - 1
         elements.push(
-          <ul key={i} className="notion-list notion-list-disc">
+          // ref: .notion-list, .notion-list-disc
+          <ul
+            key={i}
+            className="m-0 list-disc ps-[1.7em]"
+            style={{ marginBlockStart: "0.6em", marginBlockEnd: "0.6em" }}
+          >
             {bulletedListItems.map((item) => (
               <Block key={item.id} block={item} options={options} />
             ))}
@@ -61,7 +67,12 @@ const RenderBlocks = ({
         const numberedListItems = [block, ...nextBlocksOfSameType(i + 1, block.type)]
         i = i + numberedListItems.length - 1
         elements.push(
-          <ol key={i} className="notion-list notion-list-numbered">
+          // ref: .notion-list, .notion-list-numbered
+          <ol
+            key={i}
+            className="m-0 list-decimal ps-[1.6em]"
+            style={{ marginBlockStart: "0.6em", marginBlockEnd: "0.6em" }}
+          >
             {numberedListItems.map((item) => (
               <Block key={item.id} block={item} options={options} />
             ))}
@@ -90,13 +101,30 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       } catch (err) {
         // ignore invalid links
       }
+      // note(not implemented): .notion-bookmark-image
       return (
         <div className="notion-row">
-          <a href={block.bookmark.url} target="_blank" rel="noopener noreferrer" className="notion-bookmark rounded-lg">
-            <div>
-              {title && <div className="notion-bookmark-title">{title}</div>}
-              <div className="notion-bookmark-link">
-                <div className="notion-bookmark-link-text">{block.bookmark.url}</div>
+          {/* ref: .notion-bookmark */}
+          <a
+            href={block.bookmark.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ marginTop: "1px", marginBottom: "1px" }}
+            className="box-border flex w-full select-none overflow-hidden rounded-[3px] border border-solid border-[--fg-color-1] no-underline dark:border-[--bg-color-0]"
+          >
+            <div className="flex-[4_1_180px] overflow-hidden px-3.5 pb-3.5 pt-3 text-left text-[--fg-color]">
+              {/* ref: .notion-bookmark-title */}
+              {title && (
+                <div className="mb-0.5 min-h-[24px] overflow-hidden text-ellipsis whitespace-nowrap text-sm leading-5">
+                  {title}
+                </div>
+              )}
+              {/* ref: ..notion-bookmark-link */}
+              <div className="mt-1.5 flex">
+                {/* ref: .notion-bookmark-link-text */}
+                <div className="overflow-hidden text-ellipsis whitespace-nowrap text-xs leading-4 text-[--fg-color]">
+                  {block.bookmark.url}
+                </div>
               </div>
             </div>
           </a>
@@ -104,7 +132,12 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       )
     case "bulleted_list_item":
       return (
-        <li className={notionColor(block.bulleted_list_item.color)}>
+        <li
+          className={classNames(
+            "whitespace-pre-wrap py-1.5 pe-0 ps-[0.1em]",
+            notionColor(block.bulleted_list_item.color),
+          )}
+        >
           <RichTexts value={block.bulleted_list_item.rich_text} options={options} />
           {block._children && <RenderBlocks blocks={block._children} options={options} />}
         </li>
@@ -226,8 +259,11 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
         break
       }
       const imageHasCaption = block.image.caption.length > 0
+      // note(not implemented): .notion-image
       return (
-        <figure className="notion-asset-wrapper">
+        // ref: .notion-asset-wrapper
+        // note: original breakpoint for max-w: `only screen and (max-width: 730px)`
+        <figure className="mx-0 my-2 flex min-w-full max-w-full flex-col self-center sm:max-w-[100vw]">
           {/* If you delete this div the images are centered. If you wanna delete it adjust the CSS. */}
           <div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -248,7 +284,8 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
             />
           </div>
           {imageHasCaption ? (
-            <figcaption className="notion-asset-caption">
+            // ref: .notion-asset-caption
+            <figcaption className="whitespace-pre-wrap break-words py-1.5 pl-0.5 pr-0 text-sm leading-[1.4] text-[color:var(--fg-color-3)] caret-[color:var(--fg-color)]">
               <RichTexts value={block.image.caption} options={options} />
             </figcaption>
           ) : (
@@ -262,7 +299,12 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       break
     case "numbered_list_item":
       return (
-        <li className={notionColor(block.numbered_list_item.color)}>
+        <li
+          className={classNames(
+            "whitespace-pre-wrap py-1.5 pe-0 ps-[0.2em]",
+            notionColor(block.numbered_list_item.color),
+          )}
+        >
           <RichTexts value={block.numbered_list_item.rich_text} options={options} />
           {block._children && <RenderBlocks blocks={block._children} options={options} />}
         </li>
@@ -304,9 +346,15 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       const tableBodyRows = block.table.has_column_header ? tableChildren.slice(1) : tableChildren
 
       return (
-        <table className={classNames("notion-simple-table", block.table.has_row_header ? "xnotion-row-header" : "")}>
+        // ref: .notion-simple-table
+        <table
+          className={classNames(
+            "border-collapse border-spacing-0 border border-solid border-[--fg-color-5] text-sm",
+            block.table.has_row_header ? "xnotion-row-header" : "",
+          )}
+        >
           {tableHeadRow && (
-            <thead>
+            <thead className="bg-[--bg-color-0]">
               <Block block={tableHeadRow} options={options} />
             </thead>
           )}
@@ -321,10 +369,11 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
         return <></>
       }
       return (
-        <tr className="notion-simple-table-row">
+        // ref: .notion-simple-table-row
+        <tr>
           {rowCells.map((cell, index) => {
             return (
-              <td key={index}>
+              <td key={index} className="whitespace-pre-wrap border border-solid border-[--fg-color-5] p-2">
                 <div className="notion-simple-table-cell">
                   <RichTexts value={cell} options={options} />
                 </div>
@@ -338,10 +387,16 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
     case "to_do":
       const isChecked = block.to_do.checked
       return (
-        <div className="notion-to-do">
-          <div className="notion-to-do-item">
+        // note(not implemented): .notion-to-do-children
+        // ref: .notion-to-do
+        <div className="flex w-full flex-col">
+          {/* ref: .notion-to-do-item */}
+          <div className="flex min-h-[calc(1.5em_+_3px_+_3px)] w-full items-center ps-0.5">
             <Checkbox checked={isChecked} />
-            <div className={classNames("notion-to-do-body", isChecked ? `notion-to-do-checked` : "")}>
+            {/* ref: .notion-to-do-body, if isChecked: notion-to-do-checked */}
+            <div
+              className={classNames("whitespace-pre-wrap break-words", isChecked ? `line-through opacity-[0.375]` : "")}
+            >
               <RichTexts value={block.to_do.rich_text} options={options} />
             </div>
           </div>
@@ -349,16 +404,12 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       )
     case "toggle":
       return (
-        <details className={`notion-toggle ${notionColor(block.toggle.color)}`}>
-          {/* Without the bottom padding for example a normal paragraph is too close. It looks strange. */}
-          <summary className="pb-2">
-            <RichTexts value={block.toggle.rich_text} options={options} />
-          </summary>
-
-          <div>
-            <RenderBlocks blocks={block._children ?? []} options={options} />
-          </div>
-        </details>
+        <Toggle
+          className={notionColor(block.toggle.color)}
+          summary={<RichTexts value={block.toggle.rich_text} options={options} />}
+        >
+          <RenderBlocks blocks={block._children ?? []} options={options} />
+        </Toggle>
       )
     case "unsupported":
       break
