@@ -29,7 +29,7 @@ const RichText = ({ value, options }: { value: RichTextItemResponse; options: Ri
       let result = <>{mentionContent}</>
       // FIXME(post-mvp): Merge annotations with "text":
       if (value.annotations.color) {
-        result = <span className={notionColor(value.annotations.color)}>{result}</span>
+        result = <span style={notionColor(value.annotations.color)}>{result}</span>
       }
       if (value.annotations.bold) {
         result = <b>{result}</b>
@@ -62,9 +62,9 @@ const RichText = ({ value, options }: { value: RichTextItemResponse; options: Ri
       // whitespace-pre-wrap: Otherwise line breaks are not shown.
       let text = (
         <span
+          style={notionColor(value.annotations.color)}
           className={classNames(
             "whitespace-pre-wrap",
-            notionColor(value.annotations.color),
             value.annotations.bold ? "font-semibold" : "",
             value.annotations.italic ? "italic" : "",
             value.annotations.strikethrough ? "strikethrough" : "",
