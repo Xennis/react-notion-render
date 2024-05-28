@@ -46,7 +46,7 @@ export const Heading = ({
           className="float-start ms-[-25px] fill-[var(--fg-color-icon)] pe-0 no-underline opacity-0 group-hover:opacity-100"
           href={`#${id}`}
         >
-          <LinkIcon width={20} height={20} />
+          <LinkIcon width={18} height={18} />
         </a>
       )}
       {/* ref: .notion-h-title */}

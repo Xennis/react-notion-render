@@ -8,7 +8,6 @@ export const LinkIcon = ({ width, height }: { width: number; height: number }): 
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="size-6"
       width={width}
       height={height}
     >
