@@ -67,7 +67,7 @@ const RichText = ({ value, options }: { value: RichTextItemResponse; options: Ri
             "whitespace-pre-wrap",
             value.annotations.bold ? "font-semibold" : "",
             value.annotations.italic ? "italic" : "",
-            value.annotations.strikethrough ? "strikethrough" : "",
+            value.annotations.strikethrough ? "line-through" : "",
             value.annotations.underline ? "underline" : "",
           )}
         >
@@ -77,7 +77,7 @@ const RichText = ({ value, options }: { value: RichTextItemResponse; options: Ri
       if (value.annotations.code) {
         // ref: .notion-inline-code
         text = (
-          <code className="rounded-[3px] bg-[--bg-color-2] px-[0.4em] py-[0.2em] font-mono text-[85%] text-[#eb5757]">
+          <code className="rounded-[3px] bg-[--bg-color-2] px-[0.4em] py-[0.2em] font-mono text-[85%] text-[#ff4081]">
             {text}
           </code>
         )

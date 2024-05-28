@@ -52,6 +52,7 @@ const RenderBlocks = ({
         i = i + bulletedListItems.length - 1
         elements.push(
           // ref: .notion-list, .notion-list-disc
+          // note: style probably should be not be applied to neasted list
           <ul
             key={i}
             className="m-0 list-disc ps-[1.7em]"
@@ -68,6 +69,7 @@ const RenderBlocks = ({
         i = i + numberedListItems.length - 1
         elements.push(
           // ref: .notion-list, .notion-list-numbered
+          // note: style probably should be not be applied to neasted list
           <ol
             key={i}
             className="m-0 list-decimal ps-[1.6em]"
@@ -134,7 +136,7 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       return (
         <li
           style={notionColor(block.bulleted_list_item.color)}
-          className={"whitespace-pre-wrap py-1.5 pe-0 ps-[0.1em]"}
+          className={"py-1.4 whitespace-pre-wrap pe-0 ps-[0.1em]"}
         >
           <RichTexts value={block.bulleted_list_item.rich_text} options={options} />
           {block._children && <RenderBlocks blocks={block._children} options={options} />}
@@ -196,7 +198,7 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       )
     case "divider":
       // ref: .notion-hr
-      return <hr className="h-px bg-[--fg-color-0]" style={{ marginTop: "1.5rem", marginBottom: "1.5rem" }} />
+      return <hr className="h-px bg-[--fg-color-0]" style={{ marginTop: "8px", marginBottom: "8px" }} />
     case "embed":
     case "equation":
     case "file":
@@ -296,14 +298,14 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       break
     case "numbered_list_item":
       return (
-        <li style={notionColor(block.numbered_list_item.color)} className="whitespace-pre-wrap py-1.5 pe-0 ps-[0.2em]">
+        <li style={notionColor(block.numbered_list_item.color)} className="py-1.4 whitespace-pre-wrap pe-0 ps-[0.2em]">
           <RichTexts value={block.numbered_list_item.rich_text} options={options} />
           {block._children && <RenderBlocks blocks={block._children} options={options} />}
         </li>
       )
     case "paragraph":
       return (
-        <p style={notionColor(block.paragraph.color)} className="px-3">
+        <p style={notionColor(block.paragraph.color)} className="py-[3px]">
           <RichTexts value={block.paragraph.rich_text} options={options} />
         </p>
       )

@@ -49,7 +49,8 @@ export const Heading = ({
           <LinkIcon width={20} height={20} />
         </a>
       )}
-      <span className="notion-h-title">
+      {/* ref: .notion-h-title */}
+      <span>
         <RichTexts value={rich_text} options={options} />
       </span>
     </Fragment>
