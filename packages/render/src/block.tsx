@@ -148,13 +148,14 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
         <div
           style={{ marginTop: "6px", marginBottom: "6px", ...notionColor(block.callout.color, true) }}
           className={
-            "box-border inline-flex w-full items-center rounded-[3px] border border-[--fg-color-0] py-4 pe-4 ps-3 dark:border-[--bg-color-2]"
+            "box-border inline-flex w-full items-start rounded-[3px] border border-[--fg-color-0] py-4 pe-4 ps-3 dark:border-[--bg-color-2]"
           }
         >
           <Icon icon={block.callout.icon} width={28} />
           {/* ref: .notion-callout-text */}
           <div className="ms-4 whitespace-pre-wrap break-words">
             <RichTexts value={block.callout.rich_text} options={options} />
+            {block._children && <RenderBlocks blocks={block._children} options={options} />}
           </div>
         </div>
       )
