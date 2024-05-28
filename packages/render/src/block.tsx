@@ -17,7 +17,7 @@ export const Render = ({
   options: RichTextOptions
 }) => {
   return (
-    <div className="notion">
+    <div className="text-base leading-normal text-[color:var(--fg-color)] caret-[color:var(--fg-color)]">
       <RenderBlocks blocks={blocks} options={options} />
     </div>
   )
@@ -303,7 +303,7 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       )
     case "paragraph":
       return (
-        <p style={notionColor(block.paragraph.color)}>
+        <p style={notionColor(block.paragraph.color)} className="px-3">
           <RichTexts value={block.paragraph.rich_text} options={options} />
         </p>
       )
