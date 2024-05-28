@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "build": "tsc --build && cp src/thirdparty/react-notion-x/styles.css dist/styles.css",
-    "clean": "tcs --clean"
+    "watch": "tsc --watch"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.15"

@@ -1,11 +1,8 @@
-import { fetchBlocksChildren, Render } from "@react-notion-cms/render"
-import { Client } from "@notionhq/client"
+import { Render } from "@react-notion-cms/render"
+import { getCachedPageContent } from "@/lib/fetchers"
 
-import "@react-notion-cms/render/styles.css"
+import "@react-notion-cms/render/src/thirdparty/react-notion-x/styles.css"
 
-const notionClient = new Client({
-  auth: process.env.NOTION_ACCESS_TOKEN,
-})
 const demoLocale = "en_US"
 
 const formatDateFn = (date: Date) => {
@@ -17,7 +14,7 @@ const formatDateFn = (date: Date) => {
 }
 
 export default async function Home() {
-  const blocks = await fetchBlocksChildren(notionClient, process.env.NOTION_BLOCK_ID!)
+  const blocks = await getCachedPageContent(process.env.NOTION_BLOCK_ID!)
   return (
     <main className="mx-auto max-w-screen-lg">
       <Render
