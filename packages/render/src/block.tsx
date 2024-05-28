@@ -133,10 +133,8 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
     case "bulleted_list_item":
       return (
         <li
-          className={classNames(
-            "whitespace-pre-wrap py-1.5 pe-0 ps-[0.1em]",
-            notionColor(block.bulleted_list_item.color),
-          )}
+          style={notionColor(block.bulleted_list_item.color)}
+          className={"whitespace-pre-wrap py-1.5 pe-0 ps-[0.1em]"}
         >
           <RichTexts value={block.bulleted_list_item.rich_text} options={options} />
           {block._children && <RenderBlocks blocks={block._children} options={options} />}
@@ -146,11 +144,10 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       return (
         // ref: .notion-callout
         <div
-          style={{ marginTop: "1rem", marginBottom: "1rem" }}
-          className={classNames(
-            "box-border inline-flex w-full items-center rounded-[3px] border border-[--fg-color-0] py-4 pe-4 ps-3 dark:border-[--bg-color-2]",
-            `${notionColor(block.callout.color)}_co`,
-          )}
+          style={{ marginTop: "6px", marginBottom: "6px", ...notionColor(block.callout.color, true) }}
+          className={
+            "box-border inline-flex w-full items-center rounded-[3px] border border-[--fg-color-0] py-4 pe-4 ps-3 dark:border-[--bg-color-2]"
+          }
         >
           <Icon icon={block.callout.icon} width={28} />
           {/* ref: .notion-callout-text */}
@@ -299,19 +296,14 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       break
     case "numbered_list_item":
       return (
-        <li
-          className={classNames(
-            "whitespace-pre-wrap py-1.5 pe-0 ps-[0.2em]",
-            notionColor(block.numbered_list_item.color),
-          )}
-        >
+        <li style={notionColor(block.numbered_list_item.color)} className="whitespace-pre-wrap py-1.5 pe-0 ps-[0.2em]">
           <RichTexts value={block.numbered_list_item.rich_text} options={options} />
           {block._children && <RenderBlocks blocks={block._children} options={options} />}
         </li>
       )
     case "paragraph":
       return (
-        <p className={notionColor(block.paragraph.color)}>
+        <p style={notionColor(block.paragraph.color)}>
           <RichTexts value={block.paragraph.rich_text} options={options} />
         </p>
       )
@@ -321,10 +313,10 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       return (
         // ref: .notion-quote
         <blockquote
-          className={classNames(
-            "mx-0 my-1.5 block w-full whitespace-pre-wrap break-words border-l-[3px] border-solid border-l-[currentcolor] px-[0.9em] py-[0.2em] text-[1.2em]",
-            notionColor(block.quote.color),
-          )}
+          style={notionColor(block.quote.color)}
+          className={
+            "mx-0 my-1.5 block w-full whitespace-pre-wrap break-words border-l-[3px] border-solid border-l-[currentcolor] px-[0.9em] py-[0.2em] text-[1.2em]"
+          }
         >
           <div>
             <RichTexts value={block.quote.rich_text} options={options} />
@@ -405,7 +397,7 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
     case "toggle":
       return (
         <Toggle
-          className={notionColor(block.toggle.color)}
+          detailsStyle={notionColor(block.toggle.color)}
           summary={<RichTexts value={block.toggle.rich_text} options={options} />}
         >
           <RenderBlocks blocks={block._children ?? []} options={options} />

@@ -25,8 +25,8 @@ export const Heading = ({
   const id = idFromRichTexts(rich_text)
   const props = {
     id: id,
-    style: { display: is_toggleable ? "inline" : "block" },
-    className: classNames("notion-h group", `notion-${as}`, notionColor(color)),
+    style: { display: is_toggleable ? "inline" : "block", ...notionColor(color) },
+    className: classNames("notion-h group", `notion-${as}`),
   }
 
   const innerElement = (
