@@ -1,0 +1,21 @@
+name: "CI"
+
+on:
+  #push:
+  #  branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+          run_install: |
+            - args: [--frozen-lockfile]
+      - name: Check code format
+        run: pnpm run format:check
