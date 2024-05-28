@@ -124,8 +124,3 @@
 .notion *:focus {
   outline: 0;
 }
-
-/* ADDED */
-.xnotion-row-header tr td:first-child {
-  background: var(--bg-color-0);
-}
