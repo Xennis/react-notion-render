@@ -19,3 +19,5 @@ jobs:
             - args: [--frozen-lockfile]
       - name: Check code format
         run: pnpm run format:check
+      - name: Build packages
+        run: pnpm --filter './packages/*' run build

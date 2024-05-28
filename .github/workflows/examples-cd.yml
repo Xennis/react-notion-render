@@ -2,7 +2,7 @@
 #
 # To get started with Next.js see: https://nextjs.org/docs/getting-started
 #
-name: Deploy Next.js site to Pages
+name: Deploy examples
 
 on:
   # Runs on pushes targeting the default branch
@@ -39,7 +39,8 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 9
+          run_install: false
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
@@ -60,12 +61,19 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: "pnpm install --frozen-lockfile"
+      - name: Build packages
+        run: "pnpm --filter ./packages/render run build"
       - name: Build with Next.js
-        run: "pnpm next build"
+        #run: "pnpm --filter ./examples/nextjs run build"
+        run: "pnpm run build"
+        working-directory: "./examples/nextjs"
+        env:
+          NOTION_ACCESS_TOKEN: ${{ secrets.NOTION_ACCESS_TOKEN }}
+          NOTION_BLOCK_ID: ${{ vars.NOTION_BLOCK_ID }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: ./examples/nextjs/out
 
   # Deployment job
   deploy:
