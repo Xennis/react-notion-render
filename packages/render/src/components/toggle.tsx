@@ -20,7 +20,7 @@ export const Toggle = ({
       <summary style={summaryStyle} className="cursor-pointer pb-2 outline-none">
         {summary}
       </summary>
-      <div className="ms-[1.1em]">{children}</div>
+      <div className="ms-[1.2em]">{children}</div>
     </details>
   )
 }
