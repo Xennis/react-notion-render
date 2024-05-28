@@ -339,12 +339,11 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
 
       return (
         // ref: .notion-simple-table
-        <table
-          className={classNames(
-            "border-collapse border-spacing-0 border border-solid border-[--fg-color-5] text-sm",
-            block.table.has_row_header ? "xnotion-row-header" : "",
-          )}
-        >
+        // note: if block.table.has_row_header then CSS is needed:
+        // table.xnotion-row-header tr td:first-child {
+        //   background: var(--bg-color-0);
+        // }
+        <table className="border-collapse border-spacing-0 border border-solid border-[--fg-color-5] text-sm">
           {tableHeadRow && (
             <thead className="bg-[--bg-color-0]">
               <Block block={tableHeadRow} options={options} />
@@ -366,7 +365,8 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
           {rowCells.map((cell, index) => {
             return (
               <td key={index} className="whitespace-pre-wrap border border-solid border-[--fg-color-5] p-2">
-                <div className="notion-simple-table-cell">
+                {/* ref: .notion-simple-table-cell */}
+                <div>
                   <RichTexts value={cell} options={options} />
                 </div>
               </td>
