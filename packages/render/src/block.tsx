@@ -111,9 +111,17 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       )
     case "callout":
       return (
-        <div className={classNames("notion-callout", `${notionColor(block.callout.color)}_co`)}>
+        // ref: .notion-callout
+        <div
+          style={{ marginTop: "1rem", marginBottom: "1rem" }}
+          className={classNames(
+            "box-border inline-flex w-full items-center rounded-[3px] border border-[--fg-color-0] py-4 pe-4 ps-3 dark:border-[--bg-color-2]",
+            `${notionColor(block.callout.color)}_co`,
+          )}
+        >
           <Icon icon={block.callout.icon} width={28} />
-          <div className="notion-callout-text">
+          {/* ref: .notion-callout-text */}
+          <div className="ms-4 whitespace-pre-wrap break-words">
             <RichTexts value={block.callout.rich_text} options={options} />
           </div>
         </div>
@@ -144,10 +152,12 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
         return <></>
       }
       return (
-        <div className="notion-row">
+        // ref: .notion-row
+        <div className="flex space-x-4">
           {columnListChildren.map((column, index) => {
             return (
-              <div key={index} className="notion-column">
+              // ref: .notion-column
+              <div className="flex flex-1 flex-col" key={index}>
                 <RenderBlocks blocks={column._children ?? []} options={options} />
               </div>
             )
@@ -155,7 +165,8 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
         </div>
       )
     case "divider":
-      return <hr className="notion-hr" />
+      // ref: .notion-hr
+      return <hr className="h-px bg-[--fg-color-0]" style={{ marginTop: "1.5rem", marginBottom: "1.5rem" }} />
     case "embed":
     case "equation":
     case "file":
@@ -266,7 +277,13 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       break
     case "quote":
       return (
-        <blockquote className={classNames("notion-quote", notionColor(block.quote.color))}>
+        // ref: .notion-quote
+        <blockquote
+          className={classNames(
+            "mx-0 my-1.5 block w-full whitespace-pre-wrap break-words border-l-[3px] border-solid border-l-[currentcolor] px-[0.9em] py-[0.2em] text-[1.2em]",
+            notionColor(block.quote.color),
+          )}
+        >
           <div>
             <RichTexts value={block.quote.rich_text} options={options} />
           </div>

@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react"
 import type { MentionRichTextItemResponse, RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints"
 
-import { notionColor, relativeNotionUrl } from "../util"
+import { classNames, notionColor, relativeNotionUrl } from "../util"
 import { RichTextOptions } from "../types"
 import { Link, PageTitle } from "./link"
 
@@ -58,39 +58,40 @@ const RichText = ({ value, options }: { value: RichTextItemResponse; options: Ri
       }
       return result
     case "text":
-      const textStyle: CSSProperties = {
-        // Otherwise line breaks are not shown
-        whiteSpace: "pre-wrap",
-      }
-      let text = <span style={textStyle}>{value.text.content}</span>
-      if (value.annotations.color) {
-        text = <span className={notionColor(value.annotations.color)}>{text}</span>
-      }
-      if (value.annotations.bold) {
-        text = <b>{text}</b>
-      }
-      if (value.annotations.italic) {
-        text = <i>{text}</i>
-      }
-      if (value.annotations.strikethrough) {
-        text = <s>{text}</s>
-      }
-      if (value.annotations.underline) {
-        text = <span className="notion-inline-underscore">{text}</span>
-      }
+      // ref: .notion-inline-underscore (+ b, i & s)
+      // whitespace-pre-wrap: Otherwise line breaks are not shown.
+      let text = (
+        <span
+          className={classNames(
+            "whitespace-pre-wrap",
+            notionColor(value.annotations.color),
+            value.annotations.bold ? "font-semibold" : "",
+            value.annotations.italic ? "italic" : "",
+            value.annotations.strikethrough ? "strikethrough" : "",
+            value.annotations.underline ? "underline" : "",
+          )}
+        >
+          {value.text.content}
+        </span>
+      )
       if (value.annotations.code) {
-        text = <code className="notion-inline-code">{text}</code>
+        // ref: .notion-inline-code
+        text = (
+          <code className="rounded-[3px] bg-[--bg-color-2] px-[0.4em] py-[0.2em] font-mono text-[85%] text-[#eb5757]">
+            {text}
+          </code>
+        )
       }
 
       const textUrl = value.text.link?.url ?? null
       if (textUrl) {
-        text = (
+        return (
           <ResolvedLink url={textUrl} options={options}>
             {text}
           </ResolvedLink>
         )
       }
-      return text
+      return <>{text}</>
   }
 }
 
