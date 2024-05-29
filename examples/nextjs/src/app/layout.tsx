@@ -14,11 +14,16 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={classNames(inter.className, "dark:bg-slate-800")} suppressHydrationWarning>
         <header className="w-full bg-teal-500">
-          <div className="mx-auto max-w-screen-lg py-2">
+          <div className="mx-auto flex max-w-screen-lg justify-between px-3 py-2">
             <div className="flex gap-4">
               <ToggleDarkModeButton />
               <ToggleRtlDirectionButton />
             </div>
+            <nav>
+              <a className="hover:underline" href="https://github.com/Xennis/react-notion-render" target="_blank">
+                GitHub
+              </a>
+            </nav>
           </div>
         </header>
         <main>{children}</main>
