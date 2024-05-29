@@ -16,7 +16,7 @@ const formatDateFn = (date: Date) => {
 export default async function Home() {
   const blocks = await getCachedPageContent(process.env.NOTION_BLOCK_ID!)
   return (
-    <main className="mx-auto max-w-screen-lg">
+    <main className="mx-auto max-w-screen-lg px-3">
       <Render
         blocks={blocks}
         options={{ formatDateFn: formatDateFn, resolveLinkFn: (nId) => ({ href: nId, icon: null }) }}

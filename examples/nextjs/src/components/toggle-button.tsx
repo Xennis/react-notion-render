@@ -6,7 +6,10 @@ import { classNames } from "@react-notion-cms/render/dist/util"
 const Button = ({ className, ...props }: React.ComponentPropsWithoutRef<"button">) => {
   return (
     <button
-      className={classNames("rounded bg-black px-2 py-1 text-sm font-semibold text-white", className ?? "")}
+      className={classNames(
+        "rounded bg-black px-2 py-1 text-sm font-semibold text-white hover:bg-gray-800",
+        className ?? "",
+      )}
       {...props}
     >
       {props.children}
