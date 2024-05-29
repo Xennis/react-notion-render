@@ -50,7 +50,7 @@
   --notion-gray_background_co: rgba(235, 236, 237, 0.3);
 }
 
-.dark-mode {
+.dark {
   --fg-color: rgba(255, 255, 255, 0.9);
   --fg-color-0: var(--fg-color);
   --fg-color-1: var(--fg-color);
