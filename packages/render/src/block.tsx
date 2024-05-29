@@ -114,7 +114,7 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
             style={{ marginTop: "1px", marginBottom: "1px" }}
             className="box-border flex w-full select-none overflow-hidden rounded-[3px] border border-solid border-[--fg-color-1] no-underline dark:border-[--bg-color-0]"
           >
-            <div className="flex-[4_1_180px] overflow-hidden px-3.5 pb-3.5 pt-3 text-left text-[--fg-color]">
+            <div className="flex-[4_1_180px] overflow-hidden px-3.5 pb-3.5 pt-3 text-start text-[--fg-color]">
               {/* ref: .notion-bookmark-title */}
               {title && (
                 <div className="mb-0.5 min-h-[24px] overflow-hidden text-ellipsis whitespace-nowrap text-sm leading-5">
@@ -186,7 +186,7 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       }
       return (
         // ref: .notion-row
-        <div className="flex space-x-4">
+        <div className="flex gap-4">
           {columnListChildren.map((column, index) => {
             return (
               // ref: .notion-column
@@ -285,7 +285,7 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
           </div>
           {imageHasCaption ? (
             // ref: .notion-asset-caption
-            <figcaption className="whitespace-pre-wrap break-words py-1.5 pl-0.5 pr-0 text-sm leading-[1.4] text-[color:var(--fg-color-3)] caret-[color:var(--fg-color)]">
+            <figcaption className="whitespace-pre-wrap break-words py-1.5 pe-0 ps-0.5 text-sm leading-[1.4] text-[color:var(--fg-color-3)] caret-[color:var(--fg-color)]">
               <RichTexts value={block.image.caption} options={options} />
             </figcaption>
           ) : (
@@ -318,7 +318,7 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
         <blockquote
           style={notionColor(block.quote.color)}
           className={
-            "mx-0 my-1.5 block w-full whitespace-pre-wrap break-words border-l-[3px] border-solid border-l-[currentcolor] px-[0.9em] py-[0.2em] text-[1.2em]"
+            "mx-0 my-1.5 block w-full whitespace-pre-wrap break-words border-s-[3px] border-solid border-s-[currentcolor] px-[0.9em] py-[0.2em] text-[1.2em]"
           }
         >
           <div>
