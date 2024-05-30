@@ -1,17 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { classNames } from "@react-notion-cms/render/dist/util"
 
-const Button = ({ className, ...props }: React.ComponentPropsWithoutRef<"button">) => {
+const Button = ({ ...props }: React.ComponentPropsWithoutRef<"button">) => {
   return (
-    <button
-      className={classNames(
-        "rounded bg-black px-2 py-1 text-sm font-semibold text-white hover:bg-gray-800",
-        className ?? "",
-      )}
-      {...props}
-    >
+    <button className="rounded bg-black px-2 py-1 text-sm font-semibold text-white hover:bg-gray-800" {...props}>
       {props.children}
     </button>
   )

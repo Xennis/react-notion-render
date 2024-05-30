@@ -1,4 +1,4 @@
-import { classNames } from "../util"
+import { cn } from "../util"
 import { type CSSProperties } from "react"
 
 export const Toggle = ({

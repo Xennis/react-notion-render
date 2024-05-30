@@ -1,11 +1,12 @@
 import type { CSSProperties } from "react"
 import type { MentionRichTextItemResponse, RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints"
 
-import { classNames, notionColor, relativeNotionUrl } from "../util"
-import { RichTextOptions } from "../types"
-import { Link, PageTitle } from "./link"
+import { cn, notionColor, relativeNotionUrl } from "../util"
+import { RenderOptions } from "../types"
+import { A } from "./html/a"
+import { PageTitle } from "./page-title"
 
-export const RichTexts = ({ value, options }: { value: Array<RichTextItemResponse>; options: RichTextOptions }) => {
+export const RichTexts = ({ value, options }: { value: Array<RichTextItemResponse>; options: RenderOptions }) => {
   return (
     <>
       {value.map((t, index) => (
@@ -15,7 +16,7 @@ export const RichTexts = ({ value, options }: { value: Array<RichTextItemRespons
   )
 }
 
-const RichText = ({ value, options }: { value: RichTextItemResponse; options: RichTextOptions }) => {
+const RichText = ({ value, options }: { value: RichTextItemResponse; options: RenderOptions }) => {
   switch (value.type) {
     case "equation":
       // Not supported
@@ -27,7 +28,7 @@ const RichText = ({ value, options }: { value: RichTextItemResponse; options: Ri
         return <></>
       }
       let result = <>{mentionContent}</>
-      // FIXME(post-mvp): Merge annotations with "text":
+      // FIXME(post-mvp): Merge annotations with "text".
       if (value.annotations.color) {
         result = <span style={notionColor(value.annotations.color)}>{result}</span>
       }
@@ -63,7 +64,7 @@ const RichText = ({ value, options }: { value: RichTextItemResponse; options: Ri
       let text = (
         <span
           style={notionColor(value.annotations.color)}
-          className={classNames(
+          className={cn(
             "whitespace-pre-wrap",
             value.annotations.bold ? "font-semibold" : "",
             value.annotations.italic ? "italic" : "",
@@ -101,22 +102,22 @@ const ResolvedLink = ({
   children,
 }: {
   url: string
-  options: RichTextOptions
+  options: RenderOptions
   children: React.ReactNode
 }) => {
   const isRelative = url.startsWith("/")
   if (!isRelative) {
     return (
-      <Link href={url} target="_blank">
+      <options.htmlComponents.a href={url} target="_blank">
         {children}
-      </Link>
+      </options.htmlComponents.a>
     )
   }
   const resolvedLink = options.resolveLinkFn(url.substring(1)) // remove the leading
   return (
-    <Link href={resolvedLink?.href ?? null}>
+    <options.htmlComponents.a href={resolvedLink?.href ?? "#"}>
       <PageTitle icon={resolvedLink?.icon ?? null}>{children}</PageTitle>
-    </Link>
+    </options.htmlComponents.a>
   )
 }
 
