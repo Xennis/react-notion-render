@@ -1,18 +1,19 @@
 import { Render } from "@react-notion-cms/render"
 import { getCachedPageContent } from "@/lib/fetchers"
 
-const demoLocale = "en_US"
+const demoLocales = "de"
+const demoPage = "af2bbd48-fce9-471c-8c3c-21f2ac376e74"
 
 const formatDateFn = (date: Date) => {
-  return date.toLocaleDateString(demoLocale, {
-    month: "short",
+  return date.toLocaleDateString(demoLocales, {
+    month: "long",
     day: "numeric",
     year: "numeric",
   })
 }
 
 export default async function CustomPage() {
-  const blocks = await getCachedPageContent(process.env.NOTION_BLOCK_ID!)
+  const blocks = await getCachedPageContent(demoPage)
 
   return (
     <Render
