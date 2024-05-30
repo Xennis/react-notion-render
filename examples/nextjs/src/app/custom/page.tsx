@@ -24,7 +24,10 @@ export default async function CustomPage() {
         htmlComponents: {
           a: (props: React.ComponentPropsWithoutRef<"a">) => {
             return (
-              <a className="underline decoration-teal-500 decoration-2 underline-offset-1" {...props}>
+              <a
+                className="font-semibold underline decoration-teal-500 decoration-2 underline-offset-2 hover:no-underline"
+                {...props}
+              >
                 {props.children}
               </a>
             )
