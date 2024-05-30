@@ -1,7 +1,10 @@
 import { Inter } from "next/font/google"
-import "./globals.css"
-import { classNames } from "@react-notion-cms/render/dist/util"
+import Link from "next/link"
+
 import { ToggleDarkModeButton, ToggleRtlDirectionButton } from "@/components/toggle-button"
+
+import "@react-notion-cms/render/src/thirdparty/react-notion-x/styles.css"
+import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -12,21 +15,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={classNames(inter.className, "dark:bg-slate-800")} suppressHydrationWarning>
+      <body className={[inter.className, "dark:bg-slate-800"].join(" ")} suppressHydrationWarning>
         <header className="w-full bg-teal-500">
           <div className="mx-auto flex max-w-screen-lg justify-between px-3 py-2">
             <div className="flex gap-4">
               <ToggleDarkModeButton />
               <ToggleRtlDirectionButton />
             </div>
-            <nav>
+            <nav className="flex gap-4">
+              <Link className="hover:underline" href="/custom">
+                Custom
+              </Link>
               <a className="hover:underline" href="https://github.com/Xennis/react-notion-render" target="_blank">
                 GitHub
               </a>
             </nav>
           </div>
         </header>
-        <main>{children}</main>
+        <main className="mx-auto max-w-screen-lg px-3">{children}</main>
       </body>
     </html>
   )

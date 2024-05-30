@@ -1,24 +1,40 @@
 import { type JSX } from "react"
 
 import { RichTexts } from "./components/text"
-import { classNames, notionColor } from "./util"
-import type { BlockObjectResponseWithChildren, RichTextOptions } from "./types"
+import { cn, notionColor } from "./util"
+import { BlockObjectResponseWithChildren, IconResponse, RenderOptions } from "./types"
 import { Heading } from "./components/heading"
 import { Icon } from "./components/icon"
 import { Checkbox } from "./components/checkbox"
-import { Link, PageTitle } from "./components/link"
+import { A } from "./components/html/a"
 import { Toggle } from "./components/toggle"
+import { PageTitle } from "./components/page-title"
+
+const defaultFormatDateFn = (date: Date) => date.toString()
 
 export const Render = ({
   blocks,
   options,
 }: {
   blocks: Array<BlockObjectResponseWithChildren>
-  options: RichTextOptions
+  options: {
+    formatDateFn?: (date: Date) => string
+    resolveLinkFn: (nId: string) => { href: string; icon: IconResponse | null } | null
+    htmlComponents?: {
+      a?: (props: React.ComponentPropsWithoutRef<"a">) => JSX.Element
+    }
+  }
 }) => {
+  const opts = {
+    ...options,
+    formatDateFn: options.formatDateFn ?? defaultFormatDateFn,
+    htmlComponents: {
+      a: options.htmlComponents?.a ?? A,
+    },
+  }
   return (
     <div className="text-base leading-normal text-[color:var(--fg-color)] caret-[color:var(--fg-color)]">
-      <RenderBlocks blocks={blocks} options={options} />
+      <RenderBlocks blocks={blocks} options={opts} />
     </div>
   )
 }
@@ -28,7 +44,7 @@ const RenderBlocks = ({
   options,
 }: {
   blocks: Array<BlockObjectResponseWithChildren>
-  options: RichTextOptions
+  options: RenderOptions
 }) => {
   const nextBlocksOfSameType = (startIndex: number, type: string) => {
     const result: Array<BlockObjectResponseWithChildren> = []
@@ -89,7 +105,7 @@ const RenderBlocks = ({
   return <>{elements}</>
 }
 
-const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; options: RichTextOptions }) => {
+const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; options: RenderOptions }) => {
   switch (block.type) {
     case "audio":
       break
@@ -168,9 +184,9 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       }
       return (
         <p>
-          <Link {...childPageResolved}>
+          <options.htmlComponents.a href={childPageResolved?.href ?? "#"}>
             <PageTitle icon={childPageResolved.icon}>{block.child_page.title}</PageTitle>
-          </Link>
+          </options.htmlComponents.a>
         </p>
       )
     case "code":
@@ -389,9 +405,7 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
           <div className="flex min-h-[calc(1.5em_+_3px_+_3px)] w-full items-center ps-0.5">
             <Checkbox checked={isChecked} />
             {/* ref: .notion-to-do-body, if isChecked: notion-to-do-checked */}
-            <div
-              className={classNames("whitespace-pre-wrap break-words", isChecked ? `line-through opacity-[0.375]` : "")}
-            >
+            <div className={cn("whitespace-pre-wrap break-words", isChecked ? `line-through opacity-[0.375]` : "")}>
               <RichTexts value={block.to_do.rich_text} options={options} />
             </div>
           </div>

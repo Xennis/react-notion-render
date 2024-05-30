@@ -2,9 +2,9 @@ import { type Heading1BlockObjectResponse, type RichTextItemResponse } from "@no
 import { LinkIcon } from "../thirdparty/heroicons/link-icon"
 import { Fragment, type ReactNode } from "react"
 
-import { classNames, notionColor } from "../util"
+import { cn, notionColor } from "../util"
 import { RichTexts } from "./text"
-import { RichTextOptions } from "../types"
+import { RenderOptions } from "../types"
 import { Toggle } from "./toggle"
 
 export const Heading = ({
@@ -19,7 +19,7 @@ export const Heading = ({
   rich_text: Array<RichTextItemResponse>
   color: Heading1BlockObjectResponse["heading_1"]["color"]
   is_toggleable: boolean
-  options: RichTextOptions
+  options: RenderOptions
   children: ReactNode
 }) => {
   const id = idFromRichTexts(rich_text)
@@ -31,7 +31,7 @@ export const Heading = ({
       marginTop: as === "h1" ? "1.08em" : as === "h2" ? "1.1em" : "1em",
       ...notionColor(color),
     },
-    className: classNames(
+    className: cn(
       "relative inline-block font-semibold leading-[1.3] max-w-full whitespace-pre-wrap mb-px px-0.5 py-[3px] break-words group",
       as === "h1" ? "text-[1.875em]" : as === "h2" ? "text-[1.5em]" : "text-[1.25em]",
     ),

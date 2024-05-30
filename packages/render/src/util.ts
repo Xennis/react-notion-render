@@ -17,6 +17,6 @@ export const relativeNotionUrl = (url: string) => {
 
 // export const noopResolveLinkFn = (nId: string) => nId
 
-export const classNames = (...classes: string[]) => {
+export const cn = (...classes: string[]) => {
   return classes.filter(Boolean).join(" ")
 }
