@@ -6,7 +6,6 @@ import type {
 
 import { cn, idToUuid, notionColor, notionUrl } from "../util"
 import { RenderOptions } from "../types"
-import { A } from "./html/a"
 import { PageTitle } from "./page-title"
 
 export const RichTexts = ({ value, options }: { value: Array<RichTextItemResponse>; options: RenderOptions }) => {
