@@ -13,17 +13,18 @@ export const Icon = ({ icon, width, className }: { icon: IconResponse; width: nu
         </span>
       )
     case "external":
+    case "file":
+      const src = icon.type === "external" ? icon.external.url : icon.file.url
       return (
         // note: img.notion-page-icon AND svg.notion-page-icon have this style. Not svg yet.
         <img
-          src={icon.external.url}
+          src={src}
           width={width}
           height={width}
           alt="Icon"
           className={cn("block max-h-full max-w-full rounded-[3px] object-fill", className)}
         />
       )
-    case "file":
     default:
       return <></>
   }

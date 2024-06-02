@@ -2,13 +2,13 @@ import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoint
 
 type Properties = PageObjectResponse["properties"]
 
-export const propsFirstPlainText = (properties: Properties, name: string) => {
+export const propsPlainTexts = (properties: Properties, name: string) => {
   const prop = properties[name]
   if (prop?.type === "rich_text" && prop.rich_text.length > 0) {
-    return prop.rich_text[0].plain_text
+    return prop.rich_text.map((t) => t.plain_text).join()
   }
   if (prop?.type === "title" && prop.title.length > 0) {
-    return prop.title[0].plain_text
+    return prop.title.map((t) => t.plain_text).join()
   }
   return null
 }
