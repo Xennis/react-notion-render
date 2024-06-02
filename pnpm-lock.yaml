@@ -22,6 +22,9 @@ importers:
       "@notionhq/client":
         specifier: ^2.2.15
         version: 2.2.15
+      "@react-notion-cms/fetch":
+        specifier: workspace:*
+        version: link:../../packages/fetch
       "@react-notion-cms/render":
         specifier: workspace:*
         version: link:../../packages/render

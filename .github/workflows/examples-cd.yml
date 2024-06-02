@@ -69,7 +69,7 @@ jobs:
         working-directory: "./examples/nextjs"
         env:
           NOTION_ACCESS_TOKEN: ${{ secrets.NOTION_ACCESS_TOKEN }}
-          NOTION_BLOCK_ID: ${{ vars.NOTION_BLOCK_ID }}
+          NOTION_PAGES_DB_ID: ${{ vars.NOTION_PAGES_DB_ID }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

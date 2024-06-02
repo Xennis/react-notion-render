@@ -3,13 +3,13 @@ import { type PageObjectResponse, type QueryDatabaseParameters } from "@notionhq
 
 export const fetchDatabasePages = async <T>(
   client: Client,
-  processFn: (page: PageObjectResponse) => T | null,
+  processFn: (page: PageObjectResponse) => Promise<T | null>,
   firstPageArgs: QueryDatabaseParameters,
 ): Promise<Array<T>> => {
   const result: Array<T> = []
   for await (const item of iteratePaginatedAPI(client.databases.query, firstPageArgs)) {
     if (isFullPage(item)) {
-      const fnResult = processFn(item)
+      const fnResult = await processFn(item)
       if (fnResult !== null) {
         result.push(fnResult)
       }
