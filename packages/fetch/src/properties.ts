@@ -52,3 +52,11 @@ export const propsUniqueId = (properties: Properties, name: string) => {
   }
   return null
 }
+
+export const propsCheckbox = (properties: Properties, name: string) => {
+  const prop = properties[name]
+  if (prop?.type === "checkbox") {
+    return prop.checkbox
+  }
+  return null
+}
