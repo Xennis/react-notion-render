@@ -1,7 +1,10 @@
-import type { CSSProperties } from "react"
-import type { MentionRichTextItemResponse, RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints"
+import type {
+  MentionRichTextItemResponse,
+  RichTextItemResponse,
+  TextRichTextItemResponse,
+} from "@notionhq/client/build/src/api-endpoints"
 
-import { cn, notionColor, relativeNotionUrl } from "../util"
+import { cn, idToUuid, notionColor, notionUrl } from "../util"
 import { RenderOptions } from "../types"
 import { A } from "./html/a"
 import { PageTitle } from "./page-title"
@@ -27,97 +30,83 @@ const RichText = ({ value, options }: { value: RichTextItemResponse; options: Re
         // Not supported
         return <></>
       }
-      let result = <>{mentionContent}</>
-      // FIXME(post-mvp): Merge annotations with "text".
-      if (value.annotations.color) {
-        result = <span style={notionColor(value.annotations.color)}>{result}</span>
-      }
-      if (value.annotations.bold) {
-        result = <b>{result}</b>
-      }
-      if (value.annotations.italic) {
-        result = <i>{result}</i>
-      }
-      if (value.annotations.strikethrough) {
-        result = <s>{result}</s>
-      }
-      if (value.annotations.underline) {
-        result = <span className="notion-inline-underscore">{result}</span>
-      }
-      if (value.annotations.code) {
-        result = <code className="notion-inline-code">{result}</code>
+      const mention = <FormattedText annotations={value.annotations}>{mentionContent}</FormattedText>
+      if (value.href === null) {
+        return mention
       }
 
-      // Normal links are relative, e.g. /<uuid>, but mentions are absolute, e.g. https://www.notion.so/<uuid>
-      let mentionUrl = value.href !== null ? relativeNotionUrl(value.href) : null
-      if (mentionUrl) {
-        result = (
-          <ResolvedLink url={mentionUrl} options={options}>
-            {result}
-          </ResolvedLink>
-        )
-      }
-      return result
-    case "text":
-      // ref: .notion-inline-underscore (+ b, i & s)
-      // whitespace-pre-wrap: Otherwise line breaks are not shown.
-      let text = (
-        <span
-          style={notionColor(value.annotations.color)}
-          className={cn(
-            "whitespace-pre-wrap",
-            value.annotations.bold ? "font-semibold" : "",
-            value.annotations.italic ? "italic" : "",
-            value.annotations.strikethrough ? "line-through" : "",
-            value.annotations.underline ? "underline" : "",
-          )}
-        >
-          {value.text.content}
-        </span>
-      )
-      if (value.annotations.code) {
-        // ref: .notion-inline-code
-        text = (
-          <code className="rounded-[3px] bg-[--bg-color-2] px-[0.4em] py-[0.2em] font-mono text-[85%] text-[#ff4081]">
-            {text}
-          </code>
-        )
-      }
-
-      const textUrl = value.text.link?.url ?? null
-      if (textUrl) {
+      // Normal links are relative, e.g. /<uuid>, but mentions are absolute, e.g. https://www.notion.so/<id>
+      const uuid = idToUuid(value.href.replace(`${notionUrl}/`, ""))
+      const resolvedLink = options.resolveLinkFn(uuid)
+      if (resolvedLink === null) {
+        // If the URL can't be resolved make it an external link.
         return (
-          <ResolvedLink url={textUrl} options={options}>
-            {text}
-          </ResolvedLink>
+          <options.htmlComponents.a href={value.href} target="_blank">
+            {mention}
+          </options.htmlComponents.a>
         )
       }
-      return <>{text}</>
+      return (
+        <options.htmlComponents.a href={resolvedLink.href}>
+          <PageTitle icon={resolvedLink.icon}>{mention}</PageTitle>
+        </options.htmlComponents.a>
+      )
+
+    case "text":
+      const text = <FormattedText annotations={value.annotations}>{value.text.content}</FormattedText>
+      const textUrl = value.text.link?.url
+      if (!textUrl) {
+        return text
+      }
+      // Relative Url
+      if (textUrl.startsWith("/")) {
+        const uuid = textUrl.substring(1) // remove the leading slash
+        const resolvedLink = options.resolveLinkFn(uuid)
+        return (
+          <options.htmlComponents.a href={resolvedLink?.href ?? "#"}>
+            <PageTitle icon={resolvedLink?.icon ?? null}>{text}</PageTitle>
+          </options.htmlComponents.a>
+        )
+      }
+      return (
+        <options.htmlComponents.a href={textUrl} target="_blank">
+          {text}
+        </options.htmlComponents.a>
+      )
   }
 }
 
-const ResolvedLink = ({
-  url,
-  options,
+const FormattedText = ({
+  annotations,
   children,
 }: {
-  url: string
-  options: RenderOptions
+  annotations: TextRichTextItemResponse["annotations"]
   children: React.ReactNode
 }) => {
-  const isRelative = url.startsWith("/")
-  if (!isRelative) {
-    return (
-      <options.htmlComponents.a href={url} target="_blank">
-        {children}
-      </options.htmlComponents.a>
-    )
+  // ref: .notion-inline-underscore (+ b, i & s)
+  // whitespace-pre-wrap: Otherwise line breaks are not shown.
+  const result = (
+    <span
+      style={notionColor(annotations.color)}
+      className={cn(
+        "whitespace-pre-wrap",
+        annotations.bold ? "font-semibold" : "",
+        annotations.italic ? "italic" : "",
+        annotations.strikethrough ? "line-through" : "",
+        annotations.underline ? "underline" : "",
+      )}
+    >
+      {children}
+    </span>
+  )
+  if (!annotations.code) {
+    return result
   }
-  const resolvedLink = options.resolveLinkFn(url.substring(1)) // remove the leading
+  // ref: .notion-inline-code
   return (
-    <options.htmlComponents.a href={resolvedLink?.href ?? "#"}>
-      <PageTitle icon={resolvedLink?.icon ?? null}>{children}</PageTitle>
-    </options.htmlComponents.a>
+    <code className="rounded-[3px] bg-[--bg-color-2] px-[0.4em] py-[0.2em] font-mono text-[85%] text-[#ff4081]">
+      {result}
+    </code>
   )
 }
 
