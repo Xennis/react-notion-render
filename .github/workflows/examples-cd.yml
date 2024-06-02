@@ -62,7 +62,7 @@ jobs:
       - name: Install dependencies
         run: "pnpm install --frozen-lockfile"
       - name: Build packages
-        run: "pnpm --filter ./packages/render run build"
+        run: "pnpm --filter './packages/*' run build"
       - name: Build with Next.js
         #run: "pnpm --filter ./examples/nextjs run build"
         run: "pnpm run build"
