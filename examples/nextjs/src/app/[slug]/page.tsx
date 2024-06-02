@@ -38,13 +38,11 @@ export default async function SlugPage({ params }: { params: { slug: string } })
           }
         },
         // Example customization: Render links in a different style
+        // Note that instead of an underline a border bottom is used because a link can contain more than just text (e.g. an icon).
         htmlComponents: {
           a: (props: React.ComponentPropsWithoutRef<"a">) => {
             return (
-              <a
-                className="font-semibold underline decoration-teal-500 decoration-2 underline-offset-2 hover:no-underline"
-                {...props}
-              >
+              <a className="border-b-2 border-teal-500 font-semibold hover:border-b-0" {...props}>
                 {props.children}
               </a>
             )

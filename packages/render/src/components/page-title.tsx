@@ -9,10 +9,8 @@ export const PageTitle = ({ icon, children }: { icon: IconResponse; children: Re
       {/* note: plus ref .notion-page-icon-inline for margins */}
       <Icon icon={icon} width={20} className="me-1.5 ms-0.5 flex shrink-0 items-center justify-center rounded-[3px]" />
       {/* ref: .notion-page-title-text */}
-      {/* note: Consider how to use the border-buttom here in combination with a link. See also `.notion-link .notion-page-title-text` */}
-      <span className="relative top-px overflow-hidden text-ellipsis whitespace-nowrap border-b border-solid border-b-[color:var(--fg-color-1)] font-medium leading-[1.3]">
-        {children}
-      </span>
+      {/* note: In case of links no border is applied, but otherwise it is. See ref above and `.notion-link .notion-page-title-text` */}
+      <span className="relative top-px overflow-hidden text-ellipsis whitespace-nowrap leading-[1.3]">{children}</span>
     </span>
   )
 }
