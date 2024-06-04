@@ -74,5 +74,5 @@ export const propsStartDate = (properties: Properties, name: string) => {
 
 const convertDateString = (raw: string) => {
   const date = new Date(raw)
-  return isNaN(date.getTime()) ? null : date
+  return Number.isNaN(date.getTime()) ? null : date
 }
