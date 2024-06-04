@@ -26,7 +26,7 @@ Features
 | `callout`            | ✅        |                           |
 | `child_database`     | ❌        |                           |
 | `child_page`         | ✅        |                           |
-| `code`               | 🟡        | plannned                  |
+| `code`               | ✅        | no code highlighting yet  |
 | `column`             | ✅        |                           |
 | `column_list`        | ✅        |                           |
 | `divider`            | ✅        |                           |
