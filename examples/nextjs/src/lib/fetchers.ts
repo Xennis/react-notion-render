@@ -2,7 +2,6 @@ import { unstable_cache } from "next/cache"
 import { fetchBlocksChildren, IconResponse } from "@react-notion-cms/render"
 import { downloadImage, fetchDatabasePages, propsPlainTexts } from "@react-notion-cms/fetch"
 import { Client } from "@notionhq/client"
-import { statSync, writeFileSync } from "node:fs"
 import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
 
 import nextConfig from "../../next.config.mjs"
