@@ -1,11 +1,12 @@
 import { statSync, writeFileSync } from "node:fs"
-import * as path from "node:path"
 
 export const downloadImage = async (dir: string, url: string, meta: { blockId: string; lastEditedTime: Date }) => {
   const fileUrl = new URL(url)
   const originalFileName = fileUrl.pathname.substring(fileUrl.pathname.lastIndexOf("/") + 1)
   const originalFileExtension = originalFileName.split(".").pop()
-  const newFileName = path.join(dir, `${meta.blockId}.${originalFileExtension}`)
+  // Note: Using path.join from node:path using build errors with Next.js. Using just the forward slash here might be
+  // wrong on some system. In general a better approach might be to insert a function which returns the whole filename.
+  const newFileName = `${dir}/${meta.blockId}.${originalFileExtension}`
 
   let savedLastEditedTime: Date | null = null
   try {
