@@ -21,3 +21,5 @@ jobs:
         run: pnpm run format:check
       - name: Build packages
         run: pnpm --filter './packages/*' run build
+      #- name: Build examples
+      #  run: pnpm --filter './examples/*' run build
