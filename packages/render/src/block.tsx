@@ -190,8 +190,16 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
         </p>
       )
     case "code":
-      // TODO: <Code {...block.code} />
-      break
+      const codeContent = block.code.rich_text.map((t) => t.plain_text).join("")
+      return (
+        //  ref: .notion-code
+        <pre
+          className="border-[rgba(229, 231, 235, 1)] relative mx-0 my-1 box-border block w-full overflow-auto rounded-md border border-solid bg-gray-50 p-[1.5em] font-mono text-sm dark:border-gray-700 dark:bg-gray-900"
+          style={{ tabSize: 2 }}
+        >
+          <code>{codeContent}</code>
+        </pre>
+      )
     case "column":
       // It's the child of column_list and handled there
       break
