@@ -13,7 +13,7 @@ export const propsPlainTexts = (properties: Properties, name: string) => {
   return null
 }
 
-export const propsSelect = (properties: Properties, name: string) => {
+export const propsSelectName = (properties: Properties, name: string) => {
   const prop = properties[name]
   if (prop?.type === "select" && prop.select !== null) {
     return prop.select.name
@@ -21,7 +21,7 @@ export const propsSelect = (properties: Properties, name: string) => {
   return null
 }
 
-export const propsMultiSelect = (properties: Properties, name: string) => {
+export const propsMultiSelectNames = (properties: Properties, name: string) => {
   const prop = properties[name]
   if (prop?.type === "multi_select") {
     return prop.multi_select.map((ms) => ms.name)
@@ -45,7 +45,7 @@ export const propsNumber = (properties: Properties, name: string) => {
   return null
 }
 
-export const propsUniqueId = (properties: Properties, name: string) => {
+export const propsUniqueIdNumber = (properties: Properties, name: string) => {
   const prop = properties[name]
   if (prop?.type === "unique_id") {
     return prop.unique_id.number
@@ -59,4 +59,20 @@ export const propsCheckbox = (properties: Properties, name: string) => {
     return prop.checkbox
   }
   return null
+}
+
+export const propsStartDate = (properties: Properties, name: string) => {
+  const prop = properties[name]
+  if (prop?.type === "date") {
+    const start = prop.date?.start
+    if (start) {
+      return convertDateString(start)
+    }
+  }
+  return null
+}
+
+const convertDateString = (raw: string) => {
+  const date = new Date(raw)
+  return isNaN(date.getTime()) ? null : date
 }
