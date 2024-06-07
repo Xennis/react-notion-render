@@ -9,6 +9,7 @@ import { Checkbox } from "./components/checkbox"
 import { A } from "./components/html/a"
 import { Toggle } from "./components/toggle"
 import { PageTitle } from "./components/page-title"
+import { Code } from "./components/html/code"
 
 const defaultFormatDateFn = (date: Date) => date.toString()
 
@@ -22,6 +23,7 @@ export const Render = ({
     resolveLinkFn: (nId: string) => { href: string; icon: IconResponse | null } | null
     htmlComponents?: {
       a?: (props: React.ComponentPropsWithoutRef<"a">) => JSX.Element
+      code?: (props: React.ComponentPropsWithoutRef<"code">) => JSX.Element
     }
   }
 }) => {
@@ -30,6 +32,7 @@ export const Render = ({
     formatDateFn: options.formatDateFn ?? defaultFormatDateFn,
     htmlComponents: {
       a: options.htmlComponents?.a ?? A,
+      code: options.htmlComponents?.code ?? Code,
     },
   }
   return (
@@ -197,7 +200,10 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
           className="border-[rgba(229, 231, 235, 1)] relative mx-0 my-1 box-border block w-full overflow-auto rounded-md border border-solid bg-gray-50 p-[1.5em] font-mono text-sm dark:border-gray-700 dark:bg-gray-900"
           style={{ tabSize: 2 }}
         >
-          <code>{codeContent}</code>
+          {/* e.g. tool like prismjs can use the class `language-<language>` for rendering */}
+          <options.htmlComponents.code className={`language-${block.code.language}`}>
+            {codeContent}
+          </options.htmlComponents.code>
         </pre>
       )
     case "column":

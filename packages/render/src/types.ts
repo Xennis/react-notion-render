@@ -14,5 +14,6 @@ export type RenderOptions = {
   resolveLinkFn: (nId: string) => { href: string; icon: IconResponse | null } | null
   htmlComponents: {
     a: (props: React.ComponentPropsWithoutRef<"a">) => JSX.Element
+    code: (props: React.ComponentPropsWithoutRef<"code">) => JSX.Element
   }
 }

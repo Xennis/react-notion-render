@@ -2,6 +2,8 @@ import { Render } from "@react-notion-cms/render"
 import { getCachedPageContent, getCachedPages } from "@/lib/fetchers"
 import { notFound } from "next/navigation"
 
+import { Code } from "@/components/code"
+
 export async function generateStaticParams() {
   return (await getCachedPages()).map((p) => ({ slug: p.slug }))
 }
@@ -37,9 +39,9 @@ export default async function SlugPage({ params }: { params: { slug: string } })
             icon: page.icon,
           }
         },
-        // Example customization: Render links in a different style
-        // Note that instead of an underline a border bottom is used because a link can contain more than just text (e.g. an icon).
         htmlComponents: {
+          // Example customization: Render links in a different style
+          // Note that instead of an underline a border bottom is used because a link can contain more than just text (e.g. an icon).
           a: (props: React.ComponentPropsWithoutRef<"a">) => {
             return (
               <a className="border-b-2 border-teal-500 font-semibold hover:border-b-0" {...props}>
@@ -47,6 +49,8 @@ export default async function SlugPage({ params }: { params: { slug: string } })
               </a>
             )
           },
+          // Example customization: Highlight code with Prism.js
+          code: (props: React.ComponentPropsWithoutRef<"code">) => <Code {...props} />,
         },
       }}
     />
