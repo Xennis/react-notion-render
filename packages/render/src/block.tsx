@@ -24,6 +24,7 @@ export const Render = ({
     htmlComponents?: {
       a?: (props: React.ComponentPropsWithoutRef<"a">) => JSX.Element
       code?: (props: React.ComponentPropsWithoutRef<"code">) => JSX.Element
+      iframe?: (props: React.ComponentPropsWithoutRef<"iframe">) => JSX.Element
     }
   }
 }) => {
@@ -33,6 +34,7 @@ export const Render = ({
     htmlComponents: {
       a: options.htmlComponents?.a ?? A,
       code: options.htmlComponents?.code ?? Code,
+      iframe: options.htmlComponents?.iframe,
     },
   }
   return (
@@ -437,8 +439,21 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
     case "unsupported":
       break
     case "video":
-      // TODO
-      break
+      switch (block.video.type) {
+        case "external":
+          if (options.htmlComponents.iframe === undefined) {
+            console.warn("no iframe html component defined")
+            break
+          }
+          return (
+            // ref: .notion-asset-wrapper
+            <figure className="my-2 flex min-w-full max-w-full flex-col self-center md:max-w-[100vw]">
+              <options.htmlComponents.iframe src={block.video.external.url} />
+            </figure>
+          )
+        case "file":
+          break // not supported
+      }
   }
   return <></>
 }

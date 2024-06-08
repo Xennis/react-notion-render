@@ -50,7 +50,7 @@ Features
 | `template`           | ❌        |                                                                                                        |
 | `to_do`              | ✅        |                                                                                                        |
 | `toggle`             | ✅        |                                                                                                        |
-| `video`              | 🟡        | planned                                                                                                |
+| `video`              | ➕        | embed possible: [YouTube example](https://xennis.github.io/react-notion-render/custom)                 |
 
 ## Usage
 
