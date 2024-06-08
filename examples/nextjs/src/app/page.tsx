@@ -8,7 +8,7 @@ export default async function HomePage() {
     <Render
       blocks={blocks}
       options={{
-        // See custom page for an example
+        // No links resolved. See `[slug]/page` for a proper example.
         resolveLinkFn: (nId) => ({ href: nId, icon: null }),
       }}
     />

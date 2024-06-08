@@ -3,6 +3,7 @@ import { getCachedPageContent, getCachedPages } from "@/lib/fetchers"
 import { notFound } from "next/navigation"
 
 import { Code } from "@/components/code"
+import { Iframe } from "@/components/iframe"
 
 export async function generateStaticParams() {
   return (await getCachedPages()).map((p) => ({ slug: p.slug }))
@@ -42,7 +43,7 @@ export default async function SlugPage({ params }: { params: { slug: string } })
         htmlComponents: {
           // Example customization: Render links in a different style
           // Note that instead of an underline a border bottom is used because a link can contain more than just text (e.g. an icon).
-          a: (props: React.ComponentPropsWithoutRef<"a">) => {
+          a: (props) => {
             return (
               <a className="border-b-2 border-teal-500 font-semibold hover:border-b-0" {...props}>
                 {props.children}
@@ -50,7 +51,9 @@ export default async function SlugPage({ params }: { params: { slug: string } })
             )
           },
           // Example customization: Highlight code with Prism.js
-          code: (props: React.ComponentPropsWithoutRef<"code">) => <Code {...props} />,
+          code: (props) => <Code {...props} />,
+          // Example customization: Directly embed videos from YouTube
+          iframe: (props) => <Iframe {...props} />,
         },
       }}
     />
