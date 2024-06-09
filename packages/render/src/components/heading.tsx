@@ -1,6 +1,5 @@
 import { type Heading1BlockObjectResponse, type RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints"
-import { LinkIcon } from "../thirdparty/heroicons/link-icon"
-import { Fragment, type ReactNode } from "react"
+import { Fragment } from "react"
 
 import { cn, notionColor } from "../util"
 import { RichTexts } from "./text"
@@ -20,7 +19,7 @@ export const Heading = ({
   color: Heading1BlockObjectResponse["heading_1"]["color"]
   is_toggleable: boolean
   options: RenderOptions
-  children: ReactNode
+  children: React.ReactNode
 }) => {
   const id = idFromRichTexts(rich_text)
   // ref: .notion-h .notion-h1, .notion-h2, .notion-h3
@@ -39,16 +38,16 @@ export const Heading = ({
 
   const innerElement = (
     <Fragment>
-      {!is_toggleable && (
-        // ref: .notion-hash-link
-        // note(adjusted): original `margin-left: -20px; padding-right: 4px;`
-        <a
-          className="float-start ms-[-25px] fill-[var(--fg-color-icon)] pe-0 no-underline opacity-0 group-hover:opacity-100"
-          href={`#${id}`}
-        >
-          <LinkIcon width={18} height={18} />
-        </a>
-      )}
+      {/*{!is_toggleable && (*/}
+      {/*  // ref: .notion-hash-link*/}
+      {/*  // note(adjusted): original `margin-left: -20px; padding-right: 4px;`*/}
+      {/*  <a*/}
+      {/*    className="float-start ms-[-25px] fill-[var(--fg-color-icon)] pe-0 no-underline opacity-0 group-hover:opacity-100"*/}
+      {/*    href={`#${id}`}*/}
+      {/*  >*/}
+      {/*    <LinkIcon width={18} height={18} />*/}
+      {/*  </a>*/}
+      {/*)}*/}
       {/* ref: .notion-h-title */}
       <span>
         <RichTexts value={rich_text} options={options} />
