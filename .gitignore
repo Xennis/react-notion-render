@@ -5,4 +5,5 @@ node_modules/
 pnpm-publish-summary.json
 
 # Next.js
-.next/
+examples/**/.next/
+examples/**/out/
