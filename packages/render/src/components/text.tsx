@@ -4,7 +4,7 @@ import type {
   TextRichTextItemResponse,
 } from "@notionhq/client/build/src/api-endpoints"
 
-import { cn, idToUuid, notionColor, notionUrl } from "../util"
+import { cn, notionColor, notionLinkToUuid, notionUrl } from "../util"
 import { RenderOptions } from "../types"
 import { PageTitle } from "./page-title"
 
@@ -34,9 +34,8 @@ const RichText = ({ value, options }: { value: RichTextItemResponse; options: Re
         return mention
       }
 
-      // Normal links are relative, e.g. /<uuid>, but mentions are absolute, e.g. https://www.notion.so/<id>
-      const uuid = idToUuid(value.href.replace(`${notionUrl}/`, ""))
-      const resolvedLink = options.resolveLinkFn(uuid)
+      const uuid = notionLinkToUuid(value.href)
+      const resolvedLink = uuid !== null ? options.resolveLinkFn(uuid) : null
       if (resolvedLink === null) {
         // If the URL can't be resolved make it an external link.
         return (
@@ -59,8 +58,8 @@ const RichText = ({ value, options }: { value: RichTextItemResponse; options: Re
       }
       // Relative Url
       if (textUrl.startsWith("/")) {
-        const uuid = textUrl.substring(1) // remove the leading slash
-        const resolvedLink = options.resolveLinkFn(uuid)
+        const uuid = notionLinkToUuid(textUrl)
+        const resolvedLink = uuid !== null ? options.resolveLinkFn(uuid) : null
         return (
           <options.htmlComponents.a href={resolvedLink?.href ?? "#"}>
             <PageTitle icon={resolvedLink?.icon ?? null}>{text}</PageTitle>
