@@ -14,7 +14,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc --build && cp src/thirdparty/react-notion-x/styles.css dist/styles.css",
+    "build": "tsc --build && cp src/variables.css dist/styles.css",
     "watch": "tsc --watch"
   },
   "dependencies": {

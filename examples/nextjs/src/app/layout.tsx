@@ -3,7 +3,7 @@ import Link from "next/link"
 
 import { ToggleDarkModeButton, ToggleRtlDirectionButton } from "@/components/toggle-button"
 
-import "@react-notion-cms/render/src/thirdparty/react-notion-x/styles.css"
+import "@react-notion-cms/render/src/variables.css"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })

@@ -1,0 +1,86 @@
+:root {
+  --bg-color-0: rgba(135, 131, 120, 0.15);
+  --bg-color-2: rgba(135, 131, 120, 0.15);
+  --fg-color-0: rgba(55, 53, 47, 0.09);
+  --fg-color-1: rgba(55, 53, 47, 0.16);
+  --fg-color-2: rgba(55, 53, 47, 0.4);
+  --fg-color-3: rgba(55, 53, 47, 0.6);
+  --fg-color-5: rgba(233, 233, 231);
+  --fg-color-6: rgba(55, 53, 47, 0.8);
+  --fg-color-icon: var(--fg-color);
+  --fg-color: rgb(55, 53, 47);
+
+  --select-color-0: rgb(46, 170, 220);
+
+  --color-blue: rgb(11, 110, 153);
+  --color-brown: rgb(100, 71, 58);
+  --color-gray: rgb(155, 154, 151);
+  --color-green: rgb(77, 100, 97);
+  --color-orange: rgb(217, 115, 13);
+  --color-pink: rgb(173, 26, 114);
+  --color-purple: rgb(105, 64, 165);
+  --color-red: rgb(224, 62, 62);
+  --color-yellow: rgb(223, 171, 1);
+
+  --color-blue_background: rgb(221, 235, 241);
+  --color-blue_background_co: rgba(221, 235, 241, 0.3);
+  --color-brown_background: rgb(233, 229, 227);
+  --color-brown_background_co: rgba(233, 229, 227, 0.3);
+  --color-gray_background: rgb(235, 236, 237);
+  --color-gray_background_co: rgba(235, 236, 237, 0.3);
+  --color-green_background: rgb(221, 237, 234);
+  --color-green_background_co: rgba(221, 237, 234, 0.3);
+  --color-orange_background: rgb(250, 235, 221);
+  --color-orange_background_co: rgba(250, 235, 221, 0.3);
+  --color-pink_background: rgb(244, 223, 235);
+  --color-pink_background_co: rgba(244, 223, 235, 0.3);
+  --color-purple_background: rgb(234, 228, 242);
+  --color-purple_background_co: rgba(234, 228, 242, 0.3);
+  --color-red_background: rgb(251, 228, 228);
+  --color-red_background_co: rgba(251, 228, 228, 0.3);
+  --color-yellow_background: rgb(251, 243, 219);
+  --color-yellow_background_co: rgba(251, 243, 219, 0.3);
+}
+
+.dark {
+  --bg-color-0: rgb(71, 76, 80);
+  --bg-color-2: rgba(135, 131, 120, 0.15);
+  --bg-color: #2f3437;
+  --fg-color-0: var(--fg-color);
+  --fg-color-1: var(--fg-color);
+  --fg-color-2: var(--fg-color);
+  --fg-color-3: var(--fg-color);
+  --fg-color-5: rgba(255, 255, 255, 0.7);
+  --fg-color-6: #fff;
+  --fg-color-icon: #fff;
+  --fg-color: rgba(255, 255, 255, 0.9);
+
+  --color-blue: rgb(82, 156, 202);
+  --color-brown: rgb(147, 114, 100);
+  --color-gray: rgba(151, 154, 155, 0.95);
+  --color-green: rgb(77, 171, 154);
+  --color-orange: rgb(255, 163, 68);
+  --color-pink: rgb(226, 85, 161);
+  --color-purple: rgb(154, 109, 215);
+  --color-red: rgb(255, 115, 105);
+  --color-yellow: rgb(255, 220, 73);
+
+  --color-blue_background: rgb(54, 73, 84);
+  --color-blue_background_co: rgba(120, 162, 187, 0.3);
+  --color-brown_background: rgb(67, 64, 64);
+  --color-brown_background_co: rgba(67, 64, 64, 0.3);
+  --color-gray_background: rgb(69, 75, 78);
+  --color-gray_background_co: rgba(69, 75, 78, 0.3);
+  --color-green_background: rgb(53, 76, 75);
+  --color-green_background_co: rgba(53, 76, 75, 0.3);
+  --color-orange_background: rgb(89, 74, 58);
+  --color-orange_background_co: rgba(89, 74, 58, 0.3);
+  --color-pink_background: rgb(83, 59, 76);
+  --color-pink_background_co: rgba(83, 59, 76, 0.3);
+  --color-purple_background: rgb(68, 63, 87);
+  --color-purple_background_co: rgba(68, 63, 87, 0.3);
+  --color-red_background: rgb(89, 65, 65);
+  --color-red_background_co: rgba(89, 65, 65, 0.3);
+  --color-yellow_background: rgb(89, 86, 59);
+  --color-yellow_background_co: rgba(89, 86, 59, 0.3);
+}
