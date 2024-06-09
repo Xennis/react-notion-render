@@ -32,7 +32,7 @@ export default function RootLayout({
             </nav>
           </div>
         </header>
-        <main className="mx-auto max-w-screen-lg px-3">{children}</main>
+        <main className="mx-auto max-w-screen-lg px-3 pb-10">{children}</main>
       </body>
     </html>
   )

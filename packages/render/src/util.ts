@@ -19,5 +19,21 @@ export const cn = (...classes: string[]) => {
   return classes.filter(Boolean).join(" ")
 }
 
-export const idToUuid = (id: string) =>
+const idToUuid = (id: string) =>
   `${id.substring(0, 8)}-${id.substring(8, 12)}-${id.substring(12, 16)}-${id.substring(16, 20)}-${id.substring(20)}`
+
+export const notionLinkToUuid = (href: string) => {
+  let id = null
+  if (href.startsWith("/")) {
+    id = href.substring(1) // remove the leading slash
+  }
+  // e.g. mentions URLs are absolute
+  else if (href.startsWith(`${notionUrl}/`)) {
+    id = href.replace(`${notionUrl}/`, "")
+  }
+  // 32 = length of UUID
+  if (id === null || id.length !== 32) {
+    return null
+  }
+  return idToUuid(id)
+}
