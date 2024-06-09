@@ -10,6 +10,7 @@ import { A } from "./components/html/a"
 import { Toggle } from "./components/toggle"
 import { PageTitle } from "./components/page-title"
 import { Code } from "./components/html/code"
+import { Img } from "./components/html/img"
 
 const defaultFormatDateFn = (date: Date) => date.toString()
 const defaultResolveLinkFn = (nId: string) => null
@@ -26,6 +27,7 @@ export const Render = ({
       a?: (props: React.ComponentPropsWithoutRef<"a">) => JSX.Element
       code?: (props: React.ComponentPropsWithoutRef<"code">) => JSX.Element
       iframe?: (props: React.ComponentPropsWithoutRef<"iframe">) => JSX.Element
+      img?: (props: React.ComponentPropsWithoutRef<"img">) => JSX.Element
     }
   }
 }) => {
@@ -36,6 +38,7 @@ export const Render = ({
       a: options?.htmlComponents?.a ?? A,
       code: options?.htmlComponents?.code ?? Code,
       iframe: options?.htmlComponents?.iframe,
+      img: options?.htmlComponents?.img ?? Img,
     },
   }
   return (
@@ -293,7 +296,11 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
         // ref: .notion-asset-wrapper
         // note: original breakpoint for max-w: `only screen and (max-width: 730px)`
         <figure className="my-2 w-full">
-          <img src={imageUrl} alt={imageHasCaption ? block.image.caption[0].plain_text : "image"} className="rounded" />
+          <options.htmlComponents.img
+            src={imageUrl}
+            alt={imageHasCaption ? block.image.caption[0].plain_text : "image"}
+            className="rounded"
+          />
           {imageHasCaption ? (
             // ref: .notion-asset-caption
             <figcaption className="whitespace-pre-wrap break-words py-1.5 ps-0.5 text-sm leading-[1.4] text-[color:var(--fg-color-3)] caret-[color:var(--fg-color)]">
