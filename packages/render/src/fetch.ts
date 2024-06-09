@@ -7,12 +7,12 @@ type ResolveImageFn = (url: string, meta: { blockId: string; lastEditedTime: Dat
 export const fetchBlocksChildren = async (
   client: Client,
   firstPageArgs: ListBlockChildrenParameters,
-  options: { resolveImageFn?: ResolveImageFn },
+  options?: { resolveImageFn?: ResolveImageFn },
 ) => {
   const result: Array<BlockObjectResponseWithChildren> = []
   for await (const block of iteratePaginatedAPI(client.blocks.children.list, firstPageArgs)) {
     if (isFullBlock(block)) {
-      if (options.resolveImageFn && block.type === "image" && block.image.type === "file") {
+      if (options?.resolveImageFn && block.type === "image" && block.image.type === "file") {
         block.image.file.url = await options.resolveImageFn(block.image.file.url, {
           blockId: block.id,
           lastEditedTime: new Date(block.last_edited_time),
