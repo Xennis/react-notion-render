@@ -1,6 +1,7 @@
 import { Render } from "@react-notion-cms/render"
 import { getCachedPageContent, getCachedPages } from "@/lib/fetchers"
 import { notFound } from "next/navigation"
+import Link from "next/link"
 
 import { Code } from "@/components/code"
 import { Iframe } from "@/components/iframe"
@@ -41,13 +42,16 @@ export default async function SlugPage({ params }: { params: { slug: string } })
           }
         },
         htmlComponents: {
-          // Example customization: Render links in a different style
-          // Note that instead of an underline a border bottom is used because a link can contain more than just text (e.g. an icon).
+          // Example customization: Render links in a different style and use the Link component of Next.js
           a: (props) => {
             return (
-              <a className="border-b-2 border-teal-500 font-semibold hover:border-b-0" {...props}>
+              <Link
+                className="border-b-2 border-teal-500 font-semibold hover:border-b-0"
+                href={props.href ?? "#"}
+                {...props}
+              >
                 {props.children}
-              </a>
+              </Link>
             )
           },
           // Example customization: Highlight code with Prism.js

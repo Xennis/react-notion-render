@@ -2,6 +2,9 @@ import { IconResponse } from "../types"
 import { Icon } from "./icon"
 
 export const PageTitle = ({ icon, children }: { icon: IconResponse; children: React.ReactNode }) => {
+  if (icon === null) {
+    return <>{children}</>
+  }
   return (
     // ref: .notion-page-title
     <span className="inline-flex max-w-full items-center leading-[1.3] transition-[background] delay-[0s] duration-[120ms] ease-[ease-in]">
