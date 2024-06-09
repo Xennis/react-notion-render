@@ -219,7 +219,7 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       }
       return (
         // ref: .notion-row
-        <div className="flex gap-4">
+        <div className="sm:flex sm:flex-row gap-4">
           {columnListChildren.map((column, index) => {
             return (
               // ref: .notion-column
