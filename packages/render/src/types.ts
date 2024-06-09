@@ -16,5 +16,6 @@ export type RenderOptions = {
     a: (props: React.ComponentPropsWithoutRef<"a">) => JSX.Element
     code: (props: React.ComponentPropsWithoutRef<"code">) => JSX.Element
     iframe?: (props: React.ComponentPropsWithoutRef<"iframe">) => JSX.Element
+    img: (props: React.ComponentPropsWithoutRef<"img">) => JSX.Element
   }
 }
