@@ -68,6 +68,7 @@ jobs:
         run: "pnpm run build"
         working-directory: "./examples/nextjs"
         env:
+          GITHUB_PAGE_BASE_PATH: "/react-notion-render"
           NOTION_ACCESS_TOKEN: ${{ secrets.NOTION_ACCESS_TOKEN }}
           NOTION_PAGES_DB_ID: ${{ vars.NOTION_PAGES_DB_ID }}
       - name: Upload artifact
