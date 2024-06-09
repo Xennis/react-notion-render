@@ -219,7 +219,7 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       }
       return (
         // ref: .notion-row
-        <div className="sm:flex sm:flex-row gap-4">
+        <div className="gap-4 sm:flex sm:flex-row">
           {columnListChildren.map((column, index) => {
             return (
               // ref: .notion-column
@@ -287,38 +287,16 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       )
     case "image":
       const imageUrl = block.image.type === "external" ? block.image.external.url : block.image.file.url
-      if (!imageUrl) {
-        console.warn(`image for ${block.id} missing`)
-        break
-      }
       const imageHasCaption = block.image.caption.length > 0
       // note(not implemented): .notion-image
       return (
         // ref: .notion-asset-wrapper
         // note: original breakpoint for max-w: `only screen and (max-width: 730px)`
-        <figure className="mx-0 my-2 flex min-w-full max-w-full flex-col self-center sm:max-w-[100vw]">
-          {/* If you delete this div the images are centered. If you wanna delete it adjust the CSS. */}
-          <div>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={imageUrl}
-              alt={imageHasCaption ? block.image.caption[0].plain_text : "image"}
-              style={{
-                alignSelf: "center",
-                display: "flex",
-                flexDirection: "column",
-                height: "100%",
-                justifyContent: "center",
-                maxHeight: "100%",
-                maxWidth: "100%",
-                position: "relative",
-                borderRadius: "0.25rem",
-              }}
-            />
-          </div>
+        <figure className="my-2 w-full">
+          <img src={imageUrl} alt={imageHasCaption ? block.image.caption[0].plain_text : "image"} className="rounded" />
           {imageHasCaption ? (
             // ref: .notion-asset-caption
-            <figcaption className="whitespace-pre-wrap break-words py-1.5 pe-0 ps-0.5 text-sm leading-[1.4] text-[color:var(--fg-color-3)] caret-[color:var(--fg-color)]">
+            <figcaption className="whitespace-pre-wrap break-words py-1.5 ps-0.5 text-sm leading-[1.4] text-[color:var(--fg-color-3)] caret-[color:var(--fg-color)]">
               <RichTexts value={block.image.caption} options={options} />
             </figcaption>
           ) : (
@@ -332,7 +310,7 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       break
     case "numbered_list_item":
       return (
-        <li style={notionColor(block.numbered_list_item.color)} className="py-1.4 whitespace-pre-wrap pe-0 ps-[0.2em]">
+        <li style={notionColor(block.numbered_list_item.color)} className="py-1.4 whitespace-pre-wrap ps-[0.2em]">
           <RichTexts value={block.numbered_list_item.rich_text} options={options} />
           {block._children && <RenderBlocks blocks={block._children} options={options} />}
         </li>
