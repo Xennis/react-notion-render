@@ -12,15 +12,16 @@ import { PageTitle } from "./components/page-title"
 import { Code } from "./components/html/code"
 
 const defaultFormatDateFn = (date: Date) => date.toString()
+const defaultResolveLinkFn = (nId: string) => null
 
 export const Render = ({
   blocks,
   options,
 }: {
   blocks: Array<BlockObjectResponseWithChildren>
-  options: {
+  options?: {
     formatDateFn?: (date: Date) => string
-    resolveLinkFn: (nId: string) => { href: string; icon: IconResponse | null } | null
+    resolveLinkFn?: (nId: string) => { href: string; icon: IconResponse | null } | null
     htmlComponents?: {
       a?: (props: React.ComponentPropsWithoutRef<"a">) => JSX.Element
       code?: (props: React.ComponentPropsWithoutRef<"code">) => JSX.Element
@@ -28,13 +29,13 @@ export const Render = ({
     }
   }
 }) => {
-  const opts = {
-    ...options,
-    formatDateFn: options.formatDateFn ?? defaultFormatDateFn,
+  const opts: RenderOptions = {
+    formatDateFn: options?.formatDateFn ?? defaultFormatDateFn,
+    resolveLinkFn: options?.resolveLinkFn ?? defaultResolveLinkFn,
     htmlComponents: {
-      a: options.htmlComponents?.a ?? A,
-      code: options.htmlComponents?.code ?? Code,
-      iframe: options.htmlComponents?.iframe,
+      a: options?.htmlComponents?.a ?? A,
+      code: options?.htmlComponents?.code ?? Code,
+      iframe: options?.htmlComponents?.iframe,
     },
   }
   return (
