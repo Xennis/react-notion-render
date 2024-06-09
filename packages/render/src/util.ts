@@ -8,9 +8,9 @@ export const notionUrl = "https://www.notion.so"
 
 export const notionColor = (color: Color, backgroundCallout?: boolean): CSSProperties => {
   if (color.endsWith("_background")) {
-    return { backgroundColor: `var(--notion-${color}${backgroundCallout ? "_co" : ""}` }
+    return { backgroundColor: `var(--color-${color}${backgroundCallout ? "_co" : ""}` }
   }
-  return { color: `var(--notion-${color})` }
+  return { color: `var(--color-${color})` }
 }
 
 // export const noopResolveLinkFn = (nId: string) => nId

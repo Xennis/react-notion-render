@@ -62,3 +62,7 @@ const client = new Client({ auth: "<NOTION AUTH TOKEN>" })
 
 const blocks = fetchBlocksChildren(client, { block_id: "<BLOCK UUID>" }, {})
 ```
+
+# Credits
+
+How to render the Notion blocks is inspired by [react-notion-x](https://github.com/NotionX/react-notion-x) started by [Travis Fischer](https://github.com/transitive-bullshit).
