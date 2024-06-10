@@ -77,12 +77,7 @@ const RenderBlocks = ({
         i = i + bulletedListItems.length - 1
         elements.push(
           // ref: .notion-list, .notion-list-disc
-          // note: style probably should be not be applied to neasted list
-          <ul
-            key={i}
-            className="m-0 list-disc ps-[1.7em]"
-            style={{ marginBlockStart: "0.6em", marginBlockEnd: "0.6em" }}
-          >
+          <ul key={i} className="ms-1 list-disc py-2 ps-[1.65em]">
             {bulletedListItems.map((item) => (
               <Block key={item.id} block={item} options={options} />
             ))}
@@ -94,12 +89,7 @@ const RenderBlocks = ({
         i = i + numberedListItems.length - 1
         elements.push(
           // ref: .notion-list, .notion-list-numbered
-          // note: style probably should be not be applied to neasted list
-          <ol
-            key={i}
-            className="m-0 list-decimal ps-[1.6em]"
-            style={{ marginBlockStart: "0.6em", marginBlockEnd: "0.6em" }}
-          >
+          <ol key={i} className="ms-1 list-decimal py-2 ps-[1.65em]">
             {numberedListItems.map((item) => (
               <Block key={item.id} block={item} options={options} />
             ))}
@@ -130,7 +120,8 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       }
       // note(not implemented): .notion-bookmark-image
       return (
-        <div className="notion-row">
+        // ref: .notion-row
+        <div className="flex w-full max-w-full overflow-hidden md:flex-col">
           {/* ref: .notion-bookmark */}
           <a
             href={block.bookmark.url}
@@ -159,10 +150,7 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       )
     case "bulleted_list_item":
       return (
-        <li
-          style={notionColor(block.bulleted_list_item.color)}
-          className={"py-1.4 whitespace-pre-wrap pe-0 ps-[0.1em]"}
-        >
+        <li style={notionColor(block.bulleted_list_item.color)} className={"whitespace-pre-wrap py-[3px]"}>
           <RichTexts value={block.bulleted_list_item.rich_text} options={options} />
           {block._children && <RenderBlocks blocks={block._children} options={options} />}
         </li>
@@ -200,11 +188,13 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       )
     case "code":
       const codeContent = block.code.rich_text.map((t) => t.plain_text).join("")
+      // pre: suppressHydrationWarning due to tools such as Prisma.js
       return (
         //  ref: .notion-code
         <pre
           className="border-[rgba(229, 231, 235, 1)] relative mx-0 my-1 box-border block w-full overflow-auto rounded-md border border-solid bg-gray-50 p-[1.5em] font-mono text-sm dark:border-gray-700 dark:bg-gray-900"
           style={{ tabSize: 2 }}
+          suppressHydrationWarning
         >
           {/* e.g. tool like prismjs can use the class `language-<language>` for rendering */}
           <options.htmlComponents.code className={`language-${block.code.language}`}>
@@ -317,7 +307,7 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       break
     case "numbered_list_item":
       return (
-        <li style={notionColor(block.numbered_list_item.color)} className="py-1.4 whitespace-pre-wrap ps-[0.2em]">
+        <li style={notionColor(block.numbered_list_item.color)} className="whitespace-pre-wrap py-[3px] ps-[0.1em]">
           <RichTexts value={block.numbered_list_item.rich_text} options={options} />
           {block._children && <RenderBlocks blocks={block._children} options={options} />}
         </li>
@@ -336,7 +326,7 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
         <blockquote
           style={notionColor(block.quote.color)}
           className={
-            "mx-0 my-1.5 block w-full whitespace-pre-wrap break-words border-s-[3px] border-solid border-s-[currentcolor] px-[0.9em] py-[0.2em] text-[1.2em]"
+            "my-1.5 ms-1 block w-full whitespace-pre-wrap break-words border-s-[3px] border-solid border-s-[currentcolor] px-[0.8em] py-[0.15em]"
           }
         >
           <div>
