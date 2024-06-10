@@ -62,7 +62,8 @@ const RichText = ({ value, options }: { value: RichTextItemResponse; options: Re
         const resolvedLink = uuid !== null ? options.resolveLinkFn(uuid) : null
         return (
           <options.htmlComponents.a href={resolvedLink?.href ?? "#"}>
-            <PageTitle icon={resolvedLink?.icon ?? null}>{text}</PageTitle>
+            {/* No PageTitle here. It's a regular link. */}
+            {text}
           </options.htmlComponents.a>
         )
       }

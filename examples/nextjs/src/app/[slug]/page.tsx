@@ -42,11 +42,11 @@ export default async function SlugPage({ params }: { params: { slug: string } })
           }
         },
         htmlComponents: {
-          // Example customization: Render links in a different style and use the Link component of Next.js
+          // Example customization: Use the Link component of Next.js for links.
           a: (props) => {
             return (
               <Link
-                className="border-b-2 border-teal-500 font-semibold hover:border-b-0"
+                className="break-words underline decoration-[--fg-color-2] underline-offset-2 hover:no-underline"
                 href={props.href ?? "#"}
                 {...props}
               >
