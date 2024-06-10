@@ -192,7 +192,7 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
         return <></>
       }
       return (
-        <p>
+        <p className="py-[3px]">
           <options.htmlComponents.a href={childPageResolved?.href ?? "#"}>
             <PageTitle icon={childPageResolved.icon}>{block.child_page.title}</PageTitle>
           </options.htmlComponents.a>
