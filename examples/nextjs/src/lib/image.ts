@@ -17,7 +17,7 @@ const downloadImage = async (dir: string, url: string, meta: { blockId: string; 
     if (error instanceof Error && "code" in error && error.code === "ENOENT") {
       console.debug(`${newFileName} not found`)
     } else {
-      console.warn(`${newFileName}: ${error}`)
+      console.warn(`failed to download ${newFileName}`, error)
     }
   }
   // Avoid download the file again and again
@@ -25,7 +25,7 @@ const downloadImage = async (dir: string, url: string, meta: { blockId: string; 
     const resp = await fetch(fileUrl)
     const blob = await resp.blob()
     writeFileSync(newFileName, new DataView(await blob.arrayBuffer()))
-    console.info(`downloaded image ${newFileName} of block ${meta.blockId}`)
+    console.debug(`downloaded image ${newFileName} of block ${meta.blockId}`)
   }
 
   return newFileName

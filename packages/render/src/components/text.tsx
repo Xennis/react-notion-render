@@ -121,8 +121,8 @@ const mentionText = (value: MentionRichTextItemResponse, formatDateFn: (date: Da
         }
         // Ignored: value.mention.date.time_zone
         return dateText
-      } catch (e) {
-        console.warn(`Failed to parse date '${value.mention.date}': ${e}`)
+      } catch (error) {
+        console.warn("failed to parse date", value.mention.date, error)
         return null
       }
     case "link_preview":

@@ -26,7 +26,7 @@ const processPages = async (page: PageObjectResponse): Promise<Page | null> => {
   const slug = propsPlainTexts(page.properties, "slug")
   const lastEdited = new Date(page.last_edited_time)
   if (!slug || Number.isNaN(lastEdited)) {
-    console.warn(`page with id=${page.id} has invalid properties`)
+    console.warn(`page with id=${page.id} has invalid properties`, slug, lastEdited)
     return null
   }
 

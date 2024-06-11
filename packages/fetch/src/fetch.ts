@@ -15,6 +15,5 @@ export const fetchDatabasePages = async <T>(
       }
     }
   }
-  console.info(`fetched ${result.length} pages from notion database ${firstPageArgs.database_id}`)
   return result
 }

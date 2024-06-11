@@ -41,6 +41,5 @@ export const fetchBlocksChildren = async (
       })
     }
   }
-  console.info(`fetched children from notion block ${firstPageArgs.block_id}`)
   return result
 }
