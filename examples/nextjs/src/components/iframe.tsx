@@ -1,7 +1,7 @@
 export const Iframe = ({ src, ...props }: React.ComponentPropsWithoutRef<"iframe">) => {
   const youtubeId = getYouTubeVideoId(src)
   if (youtubeId === null) {
-    console.info(`iframe does not support src ${src}`)
+    console.warn("iframe does not support src", src)
     return <></>
   }
   return <YouTubeIFrame videoId={youtubeId} />
@@ -32,8 +32,8 @@ const getYouTubeVideoId = (src?: string) => {
     if (["youtube.com", "youtube-nocookie.com"].includes(domain) && ["/embed", "/watch"].includes(pathname)) {
       return searchParams.get("v")
     }
-  } catch (e) {
-    console.warn(`src is not a valid url ${src}`)
+  } catch (error) {
+    console.warn("src is not a valid url", src, error)
   }
   return null
 }

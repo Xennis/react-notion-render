@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react"
 import { highlightElement } from "prismjs"
 
 import "prismjs/components/prism-typescript.min.js"
-import "prismjs/themes/prism-okaidia.min.css" // Theme
+import "prismjs/themes/prism-okaidia.min.css" // theme
 
 export const Code = ({ ...props }: React.ComponentPropsWithoutRef<"code">) => {
   const ref = useRef<HTMLElement>(null)
@@ -12,8 +12,8 @@ export const Code = ({ ...props }: React.ComponentPropsWithoutRef<"code">) => {
     if (ref.current) {
       try {
         highlightElement(ref.current)
-      } catch (err) {
-        console.warn("prismjs highlight error", err)
+      } catch (error) {
+        console.warn("prismjs highlight error", error)
       }
     }
   }, [ref])
