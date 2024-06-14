@@ -54,7 +54,7 @@ export default async function SlugPage({ params }: { params: { slug: string } })
               </Link>
             )
           },
-          // Example customization: Highlight code with Prism.js
+          // Example customization: Highlight code syntax
           code: (props) => <Code {...props} />,
           // Example customization: Directly embed videos from YouTube
           iframe: (props) => <Iframe {...props} />,
