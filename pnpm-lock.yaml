@@ -28,6 +28,9 @@ importers:
       "@react-notion-cms/render":
         specifier: workspace:*
         version: link:../../packages/render
+      highlight.js:
+        specifier: ^11.9.0
+        version: 11.9.0
       next:
         specifier: 14.2.3
         version: 14.2.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -576,6 +579,13 @@ packages:
         integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==,
       }
     engines: { node: ">= 0.4" }
+
+  highlight.js@11.9.0:
+    resolution:
+      {
+        integrity: sha512-fJ7cW7fQGCYAkgv4CPfwFHrfd/cLS4Hau96JuJ+ZTOWhjnhoeN1ub1tFmALm/+lW5z4WCAuAV9bm05AP0mS6Gw==,
+      }
+    engines: { node: ">=12.0.0" }
 
   is-binary-path@2.1.0:
     resolution:
@@ -1487,6 +1497,8 @@ snapshots:
   hasown@2.0.2:
     dependencies:
       function-bind: 1.1.2
+
+  highlight.js@11.9.0: {}
 
   is-binary-path@2.1.0:
     dependencies:

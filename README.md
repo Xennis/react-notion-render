@@ -64,40 +64,40 @@ A working example can be found in the [example directory](https://github.com/Xen
 
 Create a pull request or issue if something is missing.
 
-| Notion Block         | Supported | Note                                                                                                   |
-| -------------------- | --------- | ------------------------------------------------------------------------------------------------------ |
-| `audio`              | ❌        |                                                                                                        |
-| `breadcrumb`         | ❌        |                                                                                                        |
-| `bookmark`           | ✅        | without preview image                                                                                  |
-| `bulleted_list_item` | ✅        | including nested lists                                                                                 |
-| `callout`            | ✅        |                                                                                                        |
-| `child_database`     | ❌        |                                                                                                        |
-| `child_page`         | ✅        |                                                                                                        |
-| `code`               | ✅        | syntax highlighting possible: [Prisma.js example](https://xennis.github.io/react-notion-render/custom) |
-| `column`             | ✅        |                                                                                                        |
-| `column_list`        | ✅        |                                                                                                        |
-| `divider`            | ✅        |                                                                                                        |
-| `embed`              | ❌        |                                                                                                        |
-| `equation`           | ❌        |                                                                                                        |
-| `file`               | ❌        |                                                                                                        |
-| `heading_1`          | ✅        | including toggled heading                                                                              |
-| `heading_2`          | ✅        | including toggled heading                                                                              |
-| `heading_3`          | ✅        | including toggled heading                                                                              |
-| `image`              | ✅        |                                                                                                        |
-| `link_preview`       | ❌        |                                                                                                        |
-| `link_to_page`       | ❌        |                                                                                                        |
-| `numbered_list_item` | ✅        | including nested lists                                                                                 |
-| `paragraph`          | ✅        |                                                                                                        |
-| `pdf`                | ❌        |                                                                                                        |
-| `quote`              | ✅        |                                                                                                        |
-| `synced_block`       | ✅        |                                                                                                        |
-| `table_of_contents`  | ❌        |                                                                                                        |
-| `table`              | ✅        |                                                                                                        |
-| `table_row`          | ✅        |                                                                                                        |
-| `template`           | ❌        |                                                                                                        |
-| `to_do`              | ✅        |                                                                                                        |
-| `toggle`             | ✅        |                                                                                                        |
-| `video`              | ➕        | embed possible: [YouTube example](https://xennis.github.io/react-notion-render/custom)                 |
+| Notion Block         | Supported | Note                                                                                                      |
+| -------------------- | --------- | --------------------------------------------------------------------------------------------------------- |
+| `audio`              | ❌        |                                                                                                           |
+| `breadcrumb`         | ❌        |                                                                                                           |
+| `bookmark`           | ✅        | without preview image                                                                                     |
+| `bulleted_list_item` | ✅        | including nested lists                                                                                    |
+| `callout`            | ✅        |                                                                                                           |
+| `child_database`     | ❌        |                                                                                                           |
+| `child_page`         | ✅        |                                                                                                           |
+| `code`               | ✅        | syntax highlighting possible: [Highlight.js example](https://xennis.github.io/react-notion-render/custom) |
+| `column`             | ✅        |                                                                                                           |
+| `column_list`        | ✅        |                                                                                                           |
+| `divider`            | ✅        |                                                                                                           |
+| `embed`              | ❌        |                                                                                                           |
+| `equation`           | ❌        |                                                                                                           |
+| `file`               | ❌        |                                                                                                           |
+| `heading_1`          | ✅        | including toggled heading                                                                                 |
+| `heading_2`          | ✅        | including toggled heading                                                                                 |
+| `heading_3`          | ✅        | including toggled heading                                                                                 |
+| `image`              | ✅        |                                                                                                           |
+| `link_preview`       | ❌        |                                                                                                           |
+| `link_to_page`       | ❌        |                                                                                                           |
+| `numbered_list_item` | ✅        | including nested lists                                                                                    |
+| `paragraph`          | ✅        |                                                                                                           |
+| `pdf`                | ❌        |                                                                                                           |
+| `quote`              | ✅        |                                                                                                           |
+| `synced_block`       | ✅        |                                                                                                           |
+| `table_of_contents`  | ❌        |                                                                                                           |
+| `table`              | ✅        |                                                                                                           |
+| `table_row`          | ✅        |                                                                                                           |
+| `template`           | ❌        |                                                                                                           |
+| `to_do`              | ✅        |                                                                                                           |
+| `toggle`             | ✅        |                                                                                                           |
+| `video`              | ➕        | embed possible: [YouTube example](https://xennis.github.io/react-notion-render/custom)                    |
 
 ## Credits
 
