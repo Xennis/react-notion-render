@@ -1,5 +1,5 @@
 {
-  "name": "@react-notion-cms/render",
+  "name": "@xennis/react-notion-cms-render",
   "version": "0.0.1-alpha.1",
   "description": "React renderer for Notion",
   "repository": {
