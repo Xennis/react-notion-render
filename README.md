@@ -17,16 +17,20 @@ Renders the JSON response of the official Notion API as React components. Stylin
 
 Checkout the [Demo](https://xennis.github.io/react-notion-render/).
 
-## Installation
+## Packages
 
-The package is not released yet. Still you can use for example [GitPkg](https://gitpkg.vercel.app/) to install it
-(Hint: To pin the version replace `main` by a commit hash)
+| Package dir | NPM version                                                                                                                                       | Size                                                                                                                                                                   |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `fetch`     | [![NPM version](https://img.shields.io/npm/v/@xennis/react-notion-cms-fetch.svg)](https://www.npmjs.com/package/@xennis/react-notion-cms-fetch)   | [![NPM bundle size](https://img.shields.io/bundlephobia/minzip/@xennis/react-notion-cms-fetch.svg)](https://bundlephobia.com/package/@xennis/react-notion-cms-fetch)   |
+| `render`    | [![NPM version](https://img.shields.io/npm/v/@xennis/react-notion-cms-render.svg)](https://www.npmjs.com/package/@xennis/react-notion-cms-render) | [![NPM bundle size](https://img.shields.io/bundlephobia/minzip/@xennis/react-notion-cms-render.svg)](https://bundlephobia.com/package/@xennis/react-notion-cms-render) |
+
+## Installation
 
 ```shell
 # Add the render package
-npm install 'https://gitpkg.now.sh/Xennis/react-notion-render/packages/render?main&scripts.install=pnpm%20build'
+npm install @xennis/react-notion-cms-render
 # (Optional) Add the fetch package
-npm install 'https://gitpkg.now.sh/Xennis/react-notion-render/packages/fetch?main&scripts.install=pnpm%20build'
+npm install @xennis/react-notion-cms-fetch
 ```
 
 Next, add the package to you Tailwind CSS config:
@@ -38,7 +42,7 @@ const config: Config = {
   content: [
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-+   "./node_modules/@react-notion-cms/render/**/*.{js,jsx}",
++   "./node_modules/@xennis/react-notion-cms-render/**/*.{js,jsx}",
   ],
 }
 export default config
@@ -48,8 +52,8 @@ export default config
 
 ```tsx
 import { Client } from "@notionhq/client"
-import { fetchBlocksChildren, Render } from "@react-notion-cms/render"
-import "@react-notion-cms/render/dist/styles.css"
+import { fetchBlocksChildren, Render } from "@xennis/react-notion-cms-render"
+import "@xennis/react-notion-cms-render/dist/styles.css"
 
 const client = new Client({ auth: "<NOTION AUTH TOKEN>" })
 
