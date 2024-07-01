@@ -23,16 +23,16 @@ export default async function SlugPage({ params }: { params: { slug: string } })
       blocks={blocks}
       options={{
         // Example customization: Render dates as German dates
-        formatDateFn: (date: Date) => {
-          return date.toLocaleDateString("de", {
+        formatDateFn: (dateString: string) => {
+          return new Date(dateString).toLocaleDateString("de", {
             month: "long",
             day: "numeric",
             year: "numeric",
           })
         },
         // Example resolving links to other Notion pages
-        resolveLinkFn: (nId) => {
-          const page = pages.find((p) => p.blockId === nId)
+        resolveLinkFn: (pageId) => {
+          const page = pages.find((p) => p.blockId === pageId)
           if (page === undefined) {
             return null
           }

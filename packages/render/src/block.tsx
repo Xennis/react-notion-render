@@ -12,8 +12,8 @@ import { PageTitle } from "./components/page-title"
 import { Code } from "./components/html/code"
 import { Img } from "./components/html/img"
 
-const defaultFormatDateFn = (date: Date) => date.toString()
-const defaultResolveLinkFn = (nId: string) => null
+const defaultFormatDateFn = (dateString: string) => new Date(dateString).toString()
+const defaultResolveLinkFn = (pageId: string) => null
 
 export const Render = ({
   blocks,
@@ -21,8 +21,8 @@ export const Render = ({
 }: {
   blocks: Array<BlockObjectResponseWithChildren>
   options?: {
-    formatDateFn?: (date: Date) => string
-    resolveLinkFn?: (nId: string) => { href: string; icon: IconResponse | null } | null
+    formatDateFn?: (dateString: string) => string
+    resolveLinkFn?: (pageId: string) => { href: string; icon: IconResponse | null } | null
     htmlComponents?: {
       a?: (props: React.ComponentPropsWithoutRef<"a">) => JSX.Element
       code?: (props: React.ComponentPropsWithoutRef<"code">) => JSX.Element

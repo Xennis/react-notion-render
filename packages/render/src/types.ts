@@ -10,8 +10,8 @@ export type BlockObjectResponseWithChildren = BlockObjectResponse & {
 export type IconResponse = PageObjectResponse["icon"]
 
 export type RenderOptions = {
-  formatDateFn: (date: Date) => string
-  resolveLinkFn: (nId: string) => { href: string; icon: IconResponse | null } | null
+  formatDateFn: (dateString: string) => string
+  resolveLinkFn: (pageId: string) => { href: string; icon: IconResponse | null } | null
   htmlComponents: {
     a: (props: React.ComponentPropsWithoutRef<"a">) => JSX.Element
     code: (props: React.ComponentPropsWithoutRef<"code">) => JSX.Element
