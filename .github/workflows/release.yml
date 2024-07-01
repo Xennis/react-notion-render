@@ -20,7 +20,9 @@ jobs:
             - args: [--frozen-lockfile]
       - name: Build packages
         run: pnpm --filter './packages/*' run build
+      - name: Set publishing config
+        run: pnpm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Publish packages
         run: pnpm publish --recursive --no-git-checks --access=public
-        env:
-          npm_config__authtoken: ${{ secrets.NPM_TOKEN }}
