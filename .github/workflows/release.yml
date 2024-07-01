@@ -19,8 +19,8 @@ jobs:
           run_install: |
             - args: [--frozen-lockfile]
       - name: Build packages
-        run: pnpm --filter './packages/\*' run build
+        run: pnpm --filter './packages/*' run build
       - name: Publish packages
-        run: pnpm publish --recursive --access=public
+        run: pnpm publish --recursive --no-git-checks --access=public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
