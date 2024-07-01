@@ -4,7 +4,7 @@ import type {
   TextRichTextItemResponse,
 } from "@notionhq/client/build/src/api-endpoints"
 
-import { cn, notionColor, notionLinkToUuid, notionUrl } from "../util"
+import { cn, notionColor, notionLinkToUuid } from "../util"
 import { RenderOptions } from "../types"
 import { PageTitle } from "./page-title"
 
@@ -109,15 +109,15 @@ const FormattedText = ({
   )
 }
 
-const mentionText = (value: MentionRichTextItemResponse, formatDateFn: (date: Date) => string) => {
+const mentionText = (value: MentionRichTextItemResponse, formatDateFn: (dateString: string) => string) => {
   switch (value.mention.type) {
     case "database":
       return null
     case "date":
       try {
-        let dateText = formatDateFn(new Date(value.mention.date.start))
+        let dateText = formatDateFn(value.mention.date.start)
         if (value.mention.date.end) {
-          dateText += ` → ${formatDateFn(new Date(value.mention.date.end))}`
+          dateText += ` → ${formatDateFn(value.mention.date.end)}`
         }
         // Ignored: value.mention.date.time_zone
         return dateText
