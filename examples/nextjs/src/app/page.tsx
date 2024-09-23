@@ -1,4 +1,4 @@
-import { Render } from "@react-notion-cms/render"
+import { Render } from "@xennis/react-notion-cms-render"
 import { getCachedPageContent } from "@/lib/fetchers"
 
 export default async function HomePage() {

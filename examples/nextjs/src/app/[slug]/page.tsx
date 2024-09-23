@@ -1,4 +1,4 @@
-import { Render } from "@react-notion-cms/render"
+import { Render } from "@xennis/react-notion-cms-render"
 import { getCachedPageContent, getCachedPages } from "@/lib/fetchers"
 import { notFound } from "next/navigation"
 import Link from "next/link"
