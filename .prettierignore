@@ -1,0 +1,13 @@
+# dependencies
+node_modules/
+
+# Build artifacts
+.next/
+dist/
+out/
+
+# typescript
+next-env.d.ts
+
+# pnpm
+pnpm-lock.yaml
