@@ -1,6 +1,6 @@
 import { unstable_cache } from "next/cache"
-import { fetchBlocksChildren, IconResponse } from "@react-notion-cms/render"
-import { fetchDatabasePages, propsPlainTexts } from "@react-notion-cms/fetch"
+import { fetchBlocksChildren, IconResponse } from "@xennis/react-notion-cms-render"
+import { fetchDatabasePages, propsPlainTexts } from "@xennis/react-notion-cms-fetch"
 import { Client } from "@notionhq/client"
 import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
 import { downloadImageToPublicDir } from "@/lib/image"
