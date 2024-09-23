@@ -1,6 +1,6 @@
 {
   "name": "@xennis/react-notion-cms-render",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "React renderer for Notion",
   "repository": {
     "url": "https://github.com/Xennis/react-notion-render",
