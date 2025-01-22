@@ -10,7 +10,8 @@ export async function generateStaticParams() {
   return (await getCachedPages()).map((p) => ({ slug: p.slug }))
 }
 
-export default async function SlugPage({ params }: { params: { slug: string } }) {
+export default async function SlugPage(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params
   const pages = await getCachedPages()
   const page = pages.find((p) => p.slug === params.slug)
   if (page === undefined) {
