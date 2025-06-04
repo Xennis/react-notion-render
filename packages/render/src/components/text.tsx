@@ -103,7 +103,7 @@ const FormattedText = ({
   }
   // ref: .notion-inline-code
   return (
-    <code className="rounded-[3px] bg-[--bg-color-2] px-[0.4em] py-[0.2em] font-mono text-[85%] text-[#ff4081]">
+    <code className="bg-(--bg-color-2) rounded-[3px] px-[0.4em] py-[0.2em] font-mono text-[85%] text-[#ff4081]">
       {result}
     </code>
   )

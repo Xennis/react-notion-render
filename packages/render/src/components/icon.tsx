@@ -4,7 +4,7 @@ import { cn } from "../util"
 export const Icon = ({ icon, width, className }: { icon: IconResponse; width: number; className?: string }) => {
   // ref: .notion-page-icon
   // note(missing): font-family: "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", EmojiSymbols;*/
-  className = cn("text-[1.1em] fill-[--fg-color-6] text-[--fg-color-icon]", className ?? "")
+  className = cn("text-[1.1em] fill-(--fg-color-6) text-(--fg-color-icon)", className ?? "")
   switch (icon?.type) {
     case "emoji":
       return (

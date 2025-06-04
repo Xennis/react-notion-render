@@ -3,7 +3,7 @@ import { fetchBlocksChildren, IconResponse } from "@xennis/react-notion-cms-rend
 import { fetchDatabasePages, propsPlainTexts } from "@xennis/react-notion-cms-fetch"
 import { Client } from "@notionhq/client"
 import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
-import { downloadImageToPublicDir } from "@/lib/image"
+import { downloadImageToPublicDir } from "./image"
 
 const notionClient = new Client({
   auth: process.env.NOTION_ACCESS_TOKEN,

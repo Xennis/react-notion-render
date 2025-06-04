@@ -1,10 +1,10 @@
 import { Render } from "@xennis/react-notion-cms-render"
-import { getCachedPageContent, getCachedPages } from "@/lib/fetchers"
+import { getCachedPageContent, getCachedPages } from "../../lib/fetchers"
 import { notFound } from "next/navigation"
 import Link from "next/link"
 
-import { Code } from "@/components/code"
-import { Iframe } from "@/components/iframe"
+import { Code } from "../../components/code"
+import { Iframe } from "../../components/iframe"
 
 export async function generateStaticParams() {
   return (await getCachedPages()).map((p) => ({ slug: p.slug }))
@@ -47,7 +47,7 @@ export default async function SlugPage(props: { params: Promise<{ slug: string }
           a: (props) => {
             return (
               <Link
-                className="break-words underline decoration-[--fg-color-2] underline-offset-2 hover:no-underline"
+                className="decoration-(--fg-color-2) break-words underline underline-offset-2 hover:no-underline"
                 href={props.href ?? "#"}
                 {...props}
               >
