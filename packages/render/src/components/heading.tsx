@@ -42,7 +42,7 @@ export const Heading = ({
       {/*  // ref: .notion-hash-link*/}
       {/*  // note(adjusted): original `margin-left: -20px; padding-right: 4px;`*/}
       {/*  <a*/}
-      {/*    className="float-start ms-[-25px] fill-[var(--fg-color-icon)] pe-0 no-underline opacity-0 group-hover:opacity-100"*/}
+      {/*    className="float-start ms-[-25px] fill-(--fg-color-icon) pe-0 no-underline opacity-0 group-hover:opacity-100"*/}
       {/*    href={`#${id}`}*/}
       {/*  >*/}
       {/*    <LinkIcon width={18} height={18} />*/}

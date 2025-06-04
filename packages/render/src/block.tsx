@@ -42,7 +42,7 @@ export const Render = ({
     },
   }
   return (
-    <div className="text-base leading-normal text-[color:var(--fg-color)] caret-[color:var(--fg-color)]">
+    <div className="text-(--fg-color) caret-(--fg-color) text-base leading-normal">
       <RenderBlocks blocks={blocks} options={opts} />
     </div>
   )
@@ -128,9 +128,9 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
             target="_blank"
             rel="noopener noreferrer"
             style={{ marginTop: "1px", marginBottom: "1px" }}
-            className="box-border flex w-full select-none overflow-hidden rounded-[3px] border border-solid border-[--fg-color-1] no-underline dark:border-[--bg-color-0]"
+            className="border-(--fg-color-1) dark:border-(--bg-color-0) box-border flex w-full select-none overflow-hidden rounded-[3px] border border-solid no-underline"
           >
-            <div className="flex-[4_1_180px] overflow-hidden px-3.5 pb-3.5 pt-3 text-start text-[--fg-color]">
+            <div className="text-(--fg-color) flex-[4_1_180px] overflow-hidden px-3.5 pb-3.5 pt-3 text-start">
               {/* ref: .notion-bookmark-title */}
               {title && (
                 <div className="mb-0.5 min-h-[24px] overflow-hidden text-ellipsis whitespace-nowrap text-sm leading-5">
@@ -140,7 +140,7 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
               {/* ref: ..notion-bookmark-link */}
               <div className="mt-1.5 flex">
                 {/* ref: .notion-bookmark-link-text */}
-                <div className="overflow-hidden text-ellipsis whitespace-nowrap text-xs leading-4 text-[--fg-color]">
+                <div className="text-(--fg-color) overflow-hidden text-ellipsis whitespace-nowrap text-xs leading-4">
                   {block.bookmark.url}
                 </div>
               </div>
@@ -161,7 +161,7 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
         <div
           style={{ marginTop: "6px", marginBottom: "6px", ...notionColor(block.callout.color, true) }}
           className={
-            "box-border inline-flex w-full items-start rounded-[3px] border border-[--fg-color-0] py-4 pe-4 ps-3 dark:border-[--bg-color-2]"
+            "border-(--fg-color-0) dark:border-(--bg-color-2) box-border inline-flex w-full items-start rounded-[3px] border py-4 pe-4 ps-3"
           }
         >
           <Icon icon={block.callout.icon} width={28} />
@@ -225,7 +225,7 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
       )
     case "divider":
       // ref: .notion-hr
-      return <hr className="h-px bg-[--fg-color-0]" style={{ marginTop: "8px", marginBottom: "8px" }} />
+      return <hr className="bg-(--fg-color-0) h-px" style={{ marginTop: "8px", marginBottom: "8px" }} />
     case "embed":
     case "equation":
     case "file":
@@ -293,7 +293,7 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
           />
           {imageHasCaption ? (
             // ref: .notion-asset-caption
-            <figcaption className="whitespace-pre-wrap break-words py-1.5 ps-0.5 text-sm leading-[1.4] text-[color:var(--fg-color-3)] caret-[color:var(--fg-color)]">
+            <figcaption className="text-(--fg-color-3) caret-(--fg-color) whitespace-pre-wrap break-words py-1.5 ps-0.5 text-sm leading-[1.4]">
               <RichTexts value={block.image.caption} options={options} />
             </figcaption>
           ) : (
@@ -326,7 +326,7 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
         <blockquote
           style={notionColor(block.quote.color)}
           className={
-            "my-1.5 ms-1 block w-full whitespace-pre-wrap break-words border-s-[3px] border-solid border-s-[currentcolor] px-[0.8em] py-[0.15em]"
+            "my-1.5 ms-1 block w-full whitespace-pre-wrap break-words border-s-[3px] border-solid border-s-current px-[0.8em] py-[0.15em]"
           }
         >
           <div>
@@ -354,9 +354,9 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
         // table.xnotion-row-header tr td:first-child {
         //   background: var(--bg-color-0);
         // }
-        <table className="border-collapse border-spacing-0 border border-solid border-[--fg-color-5] text-sm">
+        <table className="border-(--fg-color-5) border-collapse border-spacing-0 border border-solid text-sm">
           {tableHeadRow && (
-            <thead className="bg-[--bg-color-0]">
+            <thead className="bg-(--bg-color-0)">
               <Block block={tableHeadRow} options={options} />
             </thead>
           )}
@@ -375,7 +375,7 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
         <tr>
           {rowCells.map((cell, index) => {
             return (
-              <td key={index} className="whitespace-pre-wrap border border-solid border-[--fg-color-5] p-2">
+              <td key={index} className="border-(--fg-color-5) whitespace-pre-wrap border border-solid p-2">
                 {/* ref: .notion-simple-table-cell */}
                 <div>
                   <RichTexts value={cell} options={options} />
@@ -394,7 +394,7 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
         // ref: .notion-to-do
         <div className="flex w-full flex-col">
           {/* ref: .notion-to-do-item */}
-          <div className="flex min-h-[calc(1.5em_+_3px_+_3px)] w-full items-center ps-0.5">
+          <div className="flex min-h-[calc(1.5em+3px+3px)] w-full items-center ps-0.5">
             <Checkbox checked={isChecked} />
             {/* ref: .notion-to-do-body, if isChecked: notion-to-do-checked */}
             <div className={cn("whitespace-pre-wrap break-words", isChecked ? `line-through opacity-[0.375]` : "")}>
@@ -423,7 +423,7 @@ const Block = ({ block, options }: { block: BlockObjectResponseWithChildren; opt
           }
           return (
             // ref: .notion-asset-wrapper
-            <figure className="my-2 flex min-w-full max-w-full flex-col self-center md:max-w-[100vw]">
+            <figure className="md:max-w-screen my-2 flex min-w-full max-w-full flex-col self-center">
               <options.htmlComponents.iframe src={block.video.external.url} />
             </figure>
           )
