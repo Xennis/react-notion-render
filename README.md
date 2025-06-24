@@ -103,6 +103,19 @@ Create a pull request or issue if something is missing.
 | `toggle`             | ✅        |                                                                                                           |
 | `video`              | ➕        | embed possible: [YouTube example](https://xennis.github.io/react-notion-render/custom)                    |
 
+## Logging
+
+The Notion client is not encapsulated, so you can enable logging as you normally would with the official Notion client.
+
+```tsx
+import { Client, LogLevel } from "@notionhq/client"
+
+const client = new Client({
+  auth: "<NOTION AUTH TOKEN>",
+  logLevel: LogLevel.DEBUG,
+})
+```
+
 ## Credits
 
 How to render the Notion blocks is inspired by [react-notion-x](https://github.com/NotionX/react-notion-x) started by [Travis Fischer](https://github.com/transitive-bullshit).
