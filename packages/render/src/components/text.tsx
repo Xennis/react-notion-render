@@ -1,6 +1,7 @@
-import type {
+import {
   MentionRichTextItemResponse,
   RichTextItemResponse,
+  RichTextItemResponseCommon,
   TextRichTextItemResponse,
 } from "@notionhq/client/build/src/api-endpoints"
 
@@ -79,7 +80,7 @@ const FormattedText = ({
   annotations,
   children,
 }: {
-  annotations: TextRichTextItemResponse["annotations"]
+  annotations: RichTextItemResponseCommon["annotations"]
   children: React.ReactNode
 }) => {
   // ref: .notion-inline-underscore (+ b, i & s)
@@ -128,7 +129,6 @@ const mentionText = (value: MentionRichTextItemResponse, formatDateFn: (dateStri
     case "link_preview":
       return null
     case "page":
-      return value.plain_text
     case "template_mention":
     case "user":
       return null
