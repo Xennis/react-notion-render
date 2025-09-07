@@ -18,9 +18,9 @@
     "watch": "tsc --watch"
   },
   "dependencies": {
-    "@notionhq/client": "^4.0.1"
+    "@notionhq/client": "^5.0.0"
   },
   "devDependencies": {
-    "@types/react": "^19.1.8"
+    "@types/react": "^19.1.12"
   }
 }
