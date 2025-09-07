@@ -1,6 +1,6 @@
 {
   "name": "@xennis/react-notion-cms-fetch",
-  "version": "1.0.0-beta.5",
+  "version": "1.0.0-beta.6",
   "description": "Fetch data from Notion",
   "repository": {
     "url": "https://github.com/Xennis/react-notion-render",
