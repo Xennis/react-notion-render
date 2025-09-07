@@ -4,6 +4,7 @@ import { fetchDatabasePages, propsPlainTexts } from "@xennis/react-notion-cms-fe
 import { Client } from "@notionhq/client"
 import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints"
 import { downloadImageToPublicDir } from "./image"
+import { isFullDatabase } from "@notionhq/client/build/src/helpers"
 
 const notionClient = new Client({
   auth: process.env.NOTION_ACCESS_TOKEN,
@@ -15,9 +16,18 @@ export type Page = {
   icon: IconResponse
 }
 
+// Workaround for Notion v5.
+const mustGetFirstDataSourceId = async (database_id: string): Promise<string> => {
+  const db = await notionClient.databases.retrieve({ database_id: database_id })
+  if (isFullDatabase(db) && db.data_sources.length > 0) {
+    return db.data_sources[0].id
+  }
+  throw Error("No data source found in database " + database_id)
+}
+
 export const getCachedPages = unstable_cache(async () => {
   return fetchDatabasePages(notionClient, processPages, {
-    database_id: process.env.NOTION_PAGES_DB_ID!,
+    data_source_id: await mustGetFirstDataSourceId(process.env.NOTION_PAGES_DB_ID!),
     page_size: 50,
   })
 }, ["cms-pages"])
