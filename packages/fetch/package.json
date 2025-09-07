@@ -18,6 +18,6 @@
     "clean": "tsc --clean"
   },
   "dependencies": {
-    "@notionhq/client": "^4.0.1"
+    "@notionhq/client": "^5.0.0"
   }
 }
