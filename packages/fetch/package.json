@@ -19,5 +19,8 @@
   },
   "dependencies": {
     "@notionhq/client": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.1"
   }
 }
