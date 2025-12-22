@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={[inter.className, "dark:bg-slate-800"].join(" ")} suppressHydrationWarning>
         <header className="w-full bg-teal-500">
-          <div className="max-w-(--breakpoint-lg) mx-auto flex justify-between px-3 py-2">
+          <div className="mx-auto flex max-w-(--breakpoint-lg) justify-between px-3 py-2">
             <div className="flex gap-4">
               <ToggleDarkModeButton />
               <ToggleRtlDirectionButton />
@@ -32,7 +32,7 @@ export default function RootLayout({
             </nav>
           </div>
         </header>
-        <main className="max-w-(--breakpoint-lg) mx-auto px-3 pb-10">{children}</main>
+        <main className="mx-auto max-w-(--breakpoint-lg) px-3 pb-10">{children}</main>
       </body>
     </html>
   )
