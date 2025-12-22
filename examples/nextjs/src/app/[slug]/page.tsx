@@ -47,7 +47,7 @@ export default async function SlugPage(props: { params: Promise<{ slug: string }
           a: (props) => {
             return (
               <Link
-                className="decoration-(--fg-color-2) break-words underline underline-offset-2 hover:no-underline"
+                className="break-words underline decoration-(--fg-color-2) underline-offset-2 hover:no-underline"
                 href={props.href ?? "#"}
                 {...props}
               >

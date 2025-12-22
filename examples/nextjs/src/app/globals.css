@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@source '../../node_modules/@xennis/react-notion-cms-render/**/*.{js,ts,jsx,tsx}';
+@source "../../node_modules/@xennis/react-notion-cms-render/**/*.{js,ts,jsx,tsx}";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
