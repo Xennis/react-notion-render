@@ -8,27 +8,3 @@ updates:
       all:
         patterns:
           - "*"
-  - package-ecosystem: "npm"
-    directory: "examples/nextjs/"
-    schedule:
-      interval: "monthly"
-    groups:
-      all:
-        patterns:
-          - "*"
-  - package-ecosystem: "npm"
-    directory: "packages/fetch/"
-    schedule:
-      interval: "monthly"
-    groups:
-      all:
-        patterns:
-          - "*"
-  - package-ecosystem: "npm"
-    directory: "packages/render/"
-    schedule:
-      interval: "monthly"
-    groups:
-      all:
-        patterns:
-          - "*"
