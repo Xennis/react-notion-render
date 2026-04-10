@@ -9,22 +9,22 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@notionhq/client": "^5.16.0",
+    "@notionhq/client": "^5.17.0",
     "@xennis/react-notion-cms-fetch": "workspace:*",
     "@xennis/react-notion-cms-render": "workspace:*",
     "highlight.js": "^11.11.1",
-    "next": "16.2.2",
+    "next": "16.2.3",
     "prismjs": "^1.30.0",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react": "19.2.5",
+    "react-dom": "19.2.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.2",
-    "@types/node": "^25.5.0",
+    "@types/node": "^25.6.0",
     "@types/prismjs": "^1.26.6",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
-    "postcss": "^8.5.8",
+    "postcss": "^8.5.9",
     "tailwindcss": "^4.2.2",
     "typescript": "^6.0.2"
   },
