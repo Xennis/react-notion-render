@@ -47,17 +47,16 @@ jobs:
           path: |
             .next/cache
           # Generate a new cache whenever packages or source files change.
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
       - name: Install dependencies
-        run: "pnpm install --frozen-lockfile"
+        run: "npm ci"
       - name: Build packages
-        run: "pnpm --filter './packages/*' run build"
+        run: "npm run build -w @xennis/react-notion-cms-fetch -w @xennis/react-notion-cms-render"
       - name: Build with Next.js
-        #run: "pnpm --filter ./examples/nextjs run build"
-        run: "pnpm run build"
+        run: "npm run build"
         working-directory: "./examples/nextjs"
         env:
           GITHUB_PAGE_BASE_PATH: "/react-notion-render"
