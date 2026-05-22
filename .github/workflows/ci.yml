@@ -14,10 +14,10 @@ jobs:
       - name: Install mise
         uses: jdx/mise-action@v2
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm ci
       - name: Check code format
-        run: pnpm run format:check
+        run: npm run format:check
       - name: Build packages
-        run: pnpm --filter './packages/*' run build
+        run: npm run build -w @xennis/react-notion-cms-fetch -w @xennis/react-notion-cms-render
       #- name: Build examples
-      #  run: pnpm --filter './examples/*' run build
+      #  run: npm run build -w nextjs
