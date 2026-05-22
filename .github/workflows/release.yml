@@ -12,12 +12,12 @@ jobs:
       - name: Install mise
         uses: jdx/mise-action@v2
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm ci
       - name: Build packages
-        run: pnpm --filter './packages/*' run build
+        run: npm run build -w @xennis/react-notion-cms-fetch -w @xennis/react-notion-cms-render
       - name: Set publishing config
-        run: pnpm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
+        run: npm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Publish packages
-        run: pnpm publish --recursive --no-git-checks --access=public
+        run: npm publish --workspaces --access=public
