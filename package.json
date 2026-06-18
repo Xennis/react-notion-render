@@ -2,6 +2,7 @@
   "name": "react-notion-render",
   "version": "0.0.0",
   "private": true,
+  "packageManager": "pnpm@11.5.2",
   "workspaces": [
     "examples/*",
     "packages/*"
@@ -11,7 +12,7 @@
     "format": "prettier --write --ignore-path .prettierignore ."
   },
   "devDependencies": {
-    "prettier": "^3.8.3",
+    "prettier": "^3.8.4",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "typescript": "^6.0.3"
   }

@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@notionhq/client": "^5.22.0",
-    "@xennis/react-notion-cms-fetch": "*",
-    "@xennis/react-notion-cms-render": "*",
+    "@xennis/react-notion-cms-fetch": "1.0.0-beta.6",
+    "@xennis/react-notion-cms-render": "1.0.0-beta.6",
     "highlight.js": "^11.11.1",
     "next": "16.2.6",
     "prismjs": "^1.30.0",
@@ -19,13 +19,13 @@
     "react-dom": "19.2.6"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.3.0",
-    "@types/node": "^25.9.1",
+    "@tailwindcss/postcss": "^4.3.1",
+    "@types/node": "^25.9.3",
     "@types/prismjs": "^1.26.6",
     "@types/react": "19.2.15",
     "@types/react-dom": "19.2.3",
     "postcss": "^8.5.15",
-    "tailwindcss": "^4.3.0",
+    "tailwindcss": "^4.3.1",
     "typescript": "^6.0.3"
   }
 }
