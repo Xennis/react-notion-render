@@ -13,7 +13,7 @@
     "@xennis/react-notion-cms-fetch": "*",
     "@xennis/react-notion-cms-render": "*",
     "highlight.js": "^11.11.1",
-    "next": "16.2.9",
+    "next": "16.2.11",
     "prismjs": "^1.30.0",
     "react": "19.2.7",
     "react-dom": "19.2.7"
