@@ -5,7 +5,6 @@
     "jsx": "react-jsx",
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "ignoreDeprecations": "6.0",
     "rootDir": "src",
     "declaration": true,
     "types": ["node"],
