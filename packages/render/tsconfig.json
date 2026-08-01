@@ -4,7 +4,7 @@
     "lib": ["DOM", "ESNext"],
     "jsx": "react-jsx",
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "ignoreDeprecations": "6.0",
     "rootDir": "src",
     "declaration": true,
