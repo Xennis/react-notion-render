@@ -18,9 +18,9 @@
     "clean": "tsc --clean"
   },
   "dependencies": {
-    "@notionhq/client": "^5.23.2"
+    "@notionhq/client": "^5.26.0"
   },
   "devDependencies": {
-    "@types/node": "^26.1.2"
+    "@types/node": "^26.4.0"
   }
 }
