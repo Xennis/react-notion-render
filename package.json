@@ -11,7 +11,7 @@
     "format": "prettier --write --ignore-path .prettierignore ."
   },
   "devDependencies": {
-    "prettier": "^3.9.6",
+    "prettier": "^3.9.9",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "typescript": "^7.0.2"
   },
